@@ -1,0 +1,52 @@
+#nav{
+    font-size: 20px;
+}
+
+/* Plants */
+#plantImg{
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+}
+
+#plantTable{
+    text-align: center;
+}
+
+#plantCol{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Forum */
+#sortBar{
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 50px;
+    
+}
+
+#toolbar{
+    width: 150px;
+}
+
+
+/* sign in and up */
+#signInContainer{
+    padding-top: 20px;
+}
+
+#signIn{
+    padding: 15px;
+    font-size: 30px;
+    text-align: center;
+
+}
+
+#signUp{
+    padding: 15px;
+    font-size: 30px;
+    text-align: center;
+
+}
+
