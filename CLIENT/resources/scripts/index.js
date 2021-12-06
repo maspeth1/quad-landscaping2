@@ -1,40 +1,30 @@
-var account = null;
-
 function indexLoad(){
-    signedOutNav();
+    navLoad();
 }
 
 function accountLoad(){
-    signedOutNav();
+    navLoad();
 }
 
 function forumLoad(account){
-    if (account != null) {
-        signedInNav();
-    }
-    else{
-        signedOutNav();
-    }
+    navLoad();
 }
 
 function maintenanceLoad(account){
-    if (account != null) {
-        signedInNav();
-    }
-    else{
-        signedOutNav();
-    }
+    navLoad();
     
 }
 
-function plantsLoad(){
-    signedOutNav();
-    const peopleUrl = "https://localhost:5001/api/plant";
+async function plantsLoad(){
+    navLoad();
+    
+    const Url = "https://localhost:5001/api/plant";
+    console.log("Getting from " + Url);
 
-    fetch(peopleUrl).then(function(response){
+    fetch(Url).then(function(response){
         return response.json();
     }).then(function(json){
-        console.log(json);
+        //perform action with json
         displayPlants(json);
     }).catch(function(error){
         console.log(error);
@@ -43,13 +33,38 @@ function plantsLoad(){
 }
 
 function signInLoad(){
-    signedOutNav();
+    navLoad();
 }
 
 function signUpLoad(){
-    signedOutNav();
+    navLoad();
 }
 
+function navLoad(){
+    if (sessionStorage.getItem("loginStatus")=="y") {
+        console.log("Showing signed in");
+        signedInNav();
+    }
+    else {
+        console.log("Showing signed out");
+        signedOutNav();
+    }
+}
+
+// async function getFromAPI(API) {
+//     const Url = "https://localhost:5001/api/" + API;
+//     console.log("Getting from " + Url);
+
+//     fetch(Url).then(function(response){
+//         return response.json();
+//     }).then(function(json){
+//         //perform action with json
+//         console.log(json);
+//     }).catch(function(error){
+//         console.log(error);
+//     })
+
+// }
 
 function signedOutNav(){
     var nav = document.getElementById("nav");
@@ -83,10 +98,10 @@ function signedInNav(){
     nav.innerHTML = html;
 }
 
-function displayPlants(json){
+function displayPlants(plantjson){
     var plantTable = document.getElementById("plantTable");
     var html = "<div class=\"row\">";
-    json.forEach(plant => {
+    plantjson.forEach(plant => {
         html += "<div class=\"col-4\" id=\"plantCol\">";
         html += "<img src=\"" + plant.plantPic + "\" id=\"plantImg\"/>"
         html += `<div class="containter"><div><b>${plant.plantName}</b></div>`
@@ -94,4 +109,36 @@ function displayPlants(json){
     });
     html+="</div>";
     plantTable.innerHTML = html;
+}
+
+function handleSignInSubmit() {
+
+const accountUrl = "https://localhost:5001/api/accounts";
+
+    fetch(accountUrl).then(function(response){
+        return response.json();
+    }).then(function(json){
+        checkSignedIn(json, document.getElementById("username").value, document.getElementById("password").value);
+        
+    }).catch(function(error){
+        console.log(error);
+    })
+
+}
+
+function checkSignedIn(accountjson, user, pass) {
+    console.log(accountjson);
+    accountjson.forEach(account => {
+        console.log("Looping for account: " + account);
+        console.log(account.accountUsername + " " + account.accountPassword);
+        if (account.accountUsername==user) {
+            console.log("Correct user: " + account.accountUsername);
+            if (account.accountPassword==pass) {
+                console.log("Correct pass: " + account.accountPassword);
+                sessionStorage.setItem("loginStatus", "y");
+                alert("Successfully signed in! Welcome, " + account.accountFName + " " + account.accountLName);
+                window.location.href = "file:///C:/Users/Jackson/Desktop/School/Semester%202/CS100/groupProject/quad-landscaping2/CLIENT/pages/index.html";
+            }
+        }
+    });
 }
