@@ -14,22 +14,29 @@
     </nav>  
     
     
-    <div class="bootstrap-table">
+    <table class="bootstrap-table">
         <div class="border border-dark rounded" style="background-color: darkgrey;" id="sortBar">
+            <div class="float-end search" style=" margin: 5px;" id="forumSearch">
+                <input class="form-control" type="text" placeholder="Search">
+            </div>
             <div id="toolbar">
                 <select class="form-control" style=" background-color: darkgray; border: darkgray; text-align: center; margin: 5px;">
                     <option value="">Most Recent</option>
-                    <option value="all">Oldest</option>
-                    <option value="selected">Export Selected</option>
+                    <option value="">Oldest</option>
                 </select>
             </div>
-        
-            <div class="float-end search" style="width: 15%;">
-                <input class="form-control" type="text" placeholder="Search">
-            </div>
         </div>
-            
-    </div>
+        <thead>
+            <tr>
+                <th scope="col">    </th>
+            </tr>
+        </thead>
+        <!-- <div class="border border-dark rounded col-1" id="forumPost">
+
+        </div> -->
+
+        
+    </table>
 
 
 
