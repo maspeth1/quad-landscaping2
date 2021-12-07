@@ -52,6 +52,22 @@ async function plantsLoad(){
 
 }
 
+function plantPageLoad(){
+    navLoad();
+    
+    var clickedId = location.search.substring(1);
+
+    fetch(plantAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        console.log(json);
+        displayPlantInfo(json, clickedId);
+    }).catch(function(error){
+        console.log(error);
+    })
+   
+}
+
 function signInLoad(){
     navLoad();
 }
@@ -104,14 +120,31 @@ function signedInNav(){
 function displayPlants(plantjson){
     var plantTable = document.getElementById("plantTable");
     var html = "<div class=\"row\">";
-    plantjson.forEach(plant => {
+    json.forEach(plant => {
         html += "<div class=\"col-4\" id=\"plantCol\">";
-        html += "<img src=\"" + plant.plantPic + "\" id=\"plantImg\"/>"
+        html += "<a href=\"plantPage.html?" + plant.plantId + "\"><img src=\"" + plant.plantPic + "\"  class=\"rounded\"  id=\"plantImg\"/></a>"
         html += `<div class="containter"><div><b>${plant.plantName}</b></div>`
         html += "</div></div>";
     });
     html+="</div>";
     plantTable.innerHTML = html;
+}
+
+function displayPlantInfo(json, clickedId){
+    json.forEach(plant => {
+        if(plant.plantId == clickedId){ 
+            var plantInfo = document.getElementById("plantInfo");
+            var html = `<div class = \"col-7\">`;
+            html += `<h1 style=\"font-size: 70px; margin-bottom: 15px; margin-top: 20px;\">${plant.plantName}</h1>`;
+            html += `<h2 style=\"margin-bottom: 20px;\">Species Name : ${plant.plantSpeciesName}</h2>`;
+            html += `<h3>Difficuly : ${plant.plantDifficultyLevel}</h3>`;
+            html += `<h3>Type : ${plant.plantType}</h3></div>`;
+            html += `<div class="col-5"><img src="${plant.plantPic}" style="width: 350px; height: 300px; object-fit: cover;"></div>`;
+            html += `<h5 class="col-12" style="margin-top: 30px;">${plant.plantDescription}</h5>`;
+
+            plantInfo.innerHTML = html;   
+        }
+    })
 }
 
 function displayForum(forumPostsjson) {
