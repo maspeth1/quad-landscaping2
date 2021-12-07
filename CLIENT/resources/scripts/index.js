@@ -21,11 +21,20 @@ function accountLoad(){
     navLoad();
 }
 
-function forumLoad(account){
+function forumLoad(){
     navLoad();
+    
+    fetch(forumPostAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        displayForum(json);
+    }).catch(function(error){
+        console.log(error);
+    })
+    
 }
 
-function maintenanceLoad(account){
+function maintenanceLoad(){
     navLoad();
     
 }
@@ -105,6 +114,15 @@ function displayPlants(plantjson){
     plantTable.innerHTML = html;
 }
 
+function displayForum(forumPostsjson) {
+    forumPostsjson.forEach(post => {
+        //HTML goes here
+        console.log(post.postId);
+        console.log(post.postTimeStamp);
+        console.log(post.postText);
+    })
+}
+
 function handleSignInSubmit() {
     attemptSignIn(document.getElementById("username").value, document.getElementById("password").value);
 }
@@ -133,19 +151,6 @@ function handleSignUpSubmit() {
     else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
     else if (confirmPass == "") {alert("Please confirm your password.");}
     else {alert("Passwords do not match. Please try again");}
-}
-
-function postAccount(account) {
-    fetch(accountAPI, {
-        method: "POST",
-        headers: {
-            "Accept": 'application/json',
-            "Content-Type": 'application/json',
-        },
-        body: JSON.stringify(account)
-    }).then((response)=>{
-        login(account.AccountUsername);
-    })
 }
 
 function attemptSignIn(user, pass) {
@@ -197,6 +202,23 @@ function login(user) {
     })
 }
 
+function logout() {
+    if (sessionStorage.getItem("loginStatus")=="y") {
+        sessionStorage.removeItem("loginStatus");
+        sessionStorage.removeItem("accId");
+        sessionStorage.removeItem("accUser");
+        sessionStorage.removeItem("accFName");
+        sessionStorage.removeItem("accLName");
+        sessionStorage.removeItem("accAdmStatus");
+        sessionStorage.removeItem("accBio");
+        sessionStorage.removeItem("accPFP");
+        sessionStorage.removeItem("accSeshID");
+    }
+    else {
+        console.log("No account logged in!");
+    }
+}
+
 function storeAccount(account) {
     sessionStorage.setItem("accId", account.AccountId);
     sessionStorage.setItem("accUser", account.AccountUsername);
@@ -206,4 +228,98 @@ function storeAccount(account) {
     sessionStorage.setItem("accBio", account.AccountBio);
     sessionStorage.setItem("accPFP", account.AccountProfilePic);
     sessionStorage.setItem("accSeshID", account.AccountCreatedSessionId);
+}
+
+// function createSession() {
+//     var session {
+//         sessionStartTime : ,
+
+//     }
+//     postSession(session);
+// }
+
+function postAccount(account) {
+    fetch(accountAPI, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(account)
+    }).then((response)=>{
+        login(account.AccountUsername);
+    })
+}
+
+function postForumpost(post) {
+    fetch(forumPostAPI, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(post)
+    }).then((response)=>{
+        
+    })
+}
+
+function postForumcomment(fcomment) {
+    function postForumpost(fcomment) {
+        fetch(forumComAPI, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(fcomment)
+        }).then((response)=>{
+            
+        })
+    }
+}
+
+function postPlantcomment(pcomment) {
+    function postForumpost(pcomment) {
+        fetch(plantComAPI, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(pcomment)
+        }).then((response)=>{
+            
+        })
+    }
+}
+
+function postPlant(plant) {
+    function postForumpost(plant) {
+        fetch(plantAPI, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(plant)
+        }).then((response)=>{
+            
+        })
+    }
+}
+
+function postSession(session) {
+    function postForumpost(session) {
+        fetch(sessionAPI, {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(session)
+        }).then((response)=>{
+            
+        })
+    }
 }
