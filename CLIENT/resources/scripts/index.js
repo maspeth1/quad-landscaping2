@@ -54,7 +54,7 @@ async function plantsLoad(){
 
 function plantPageLoad(){
     navLoad();
-    
+
     var clickedId = location.search.substring(1);
 
     fetch(plantAPI).then(function(response){
@@ -65,7 +65,13 @@ function plantPageLoad(){
     }).catch(function(error){
         console.log(error);
     })
-   
+
+    if(sessionStorage.getItem("loginStatus") == "y"){
+        var buttons = document.getElementById("plantEditButtons");
+        var html = `<button type="button" onclick="editPlantPage()" style="opacity: 1;" class="btn btn-warning" id="editPlantPage">Edit</button>
+        <button type="button" onclick="savePlantChanges()" style="opacity: 0;" class="btn btn-success" id="savePlantChanges">Save Changes</button>`;
+        buttons.innerHTML = html;
+    }
 }
 
 function signInLoad(){
@@ -134,17 +140,35 @@ function displayPlantInfo(json, clickedId){
     json.forEach(plant => {
         if(plant.plantId == clickedId){ 
             var plantInfo = document.getElementById("plantInfo");
-            var html = `<div class = \"col-7\">`;
-            html += `<h1 style=\"font-size: 70px; margin-bottom: 15px; margin-top: 20px;\">${plant.plantName}</h1>`;
+            // var html = `<div class="col-12" style="margin-left: 100px;">
+            //             <button type="button" class="btn btn-info">Info</button>
+            //             </div>`;
+            var html = `<div class = \"col-7\" >`;
+            html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\">${plant.plantName}</h1>`;
             html += `<h2 style=\"margin-bottom: 20px;\">Species Name : ${plant.plantSpeciesName}</h2>`;
             html += `<h3>Difficuly : ${plant.plantDifficultyLevel}</h3>`;
             html += `<h3>Type : ${plant.plantType}</h3></div>`;
-            html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="width: 350px; height: 300px; object-fit: cover;"></div>`;
+            html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="margin-left:20px; width: 350px; height: 300px; object-fit: cover;"></div>`;
             html += `<h5 class="col-12" style="margin-top: 30px;">${plant.plantDescription}</h5>`;
 
             plantInfo.innerHTML = html;   
         }
     })
+}
+
+function editPlantPage(){
+    let savePlantChanges = document.getElementById("savePlantChanges");
+    if (savePlantChanges.style.opacity === '0'){
+        savePlantChanges.style.opacity = 1;}
+    else{
+        savePlantChanges.style.opacity = 0;}
+
+    
+}
+
+function savePlantChanges(){
+    let savePlantChanges = document.getElementById("savePlantChanges");
+    savePlantChanges.style.opacity = 0;
 }
 
 function displayForum(forumPostsjson) {
