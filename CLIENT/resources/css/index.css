@@ -22,7 +22,7 @@
 
 /* Plants */
 #plantImg{
-    width: 100%;
+    width: 250px;
     object-fit: cover;
     height: 200px;
 }
