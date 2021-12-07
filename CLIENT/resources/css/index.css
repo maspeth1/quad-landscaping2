@@ -7,6 +7,9 @@
     font-family: 'Satisfy', cursive;
     
 }
+#nav ul li:hover a{
+    color:white;
+}
 
 #nav{
     font-size: 20px;
