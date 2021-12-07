@@ -1,3 +1,18 @@
+const indexUrl = "index.html";
+const accountUrl = "account.html";
+const forumUrl = "forum.html";
+const maintenanceUrl = "maintenance.html";
+const plantsUrl = "plants.html";
+const signinUrl = "signIn.html";
+const signUpUrl = "signUp.html";
+
+const accountAPI = "https://localhost:5001/api/accounts";
+const forumComAPI = "https://localhost:5001/api/forumcomments";
+const forumPostAPI = "https://localhost:5001/api/forumposts";
+const plantComAPI = "https://localhost:5001/api/plantcomments";
+const plantAPI = "https://localhost:5001/api/plant";
+const sessionAPI = "https://localhost:5001/api/sessions";
+
 function indexLoad(){
     navLoad();
 }
@@ -17,14 +32,10 @@ function maintenanceLoad(account){
 
 async function plantsLoad(){
     navLoad();
-    
-    const Url = "https://localhost:5001/api/plant";
-    console.log("Getting from " + Url);
 
-    fetch(Url).then(function(response){
+    fetch(plantAPI).then(function(response){
         return response.json();
     }).then(function(json){
-        //perform action with json
         displayPlants(json);
     }).catch(function(error){
         console.log(error);
@@ -42,29 +53,12 @@ function signUpLoad(){
 
 function navLoad(){
     if (sessionStorage.getItem("loginStatus")=="y") {
-        console.log("Showing signed in");
         signedInNav();
     }
     else {
-        console.log("Showing signed out");
         signedOutNav();
     }
 }
-
-// async function getFromAPI(API) {
-//     const Url = "https://localhost:5001/api/" + API;
-//     console.log("Getting from " + Url);
-
-//     fetch(Url).then(function(response){
-//         return response.json();
-//     }).then(function(json){
-//         //perform action with json
-//         console.log(json);
-//     }).catch(function(error){
-//         console.log(error);
-//     })
-
-// }
 
 function signedOutNav(){
     var nav = document.getElementById("nav");
@@ -93,7 +87,7 @@ function signedInNav(){
             <li class="nav-item"><a href="forum.html" class="nav-link link-dark px-2">Forum</a></li>
         </ul>
         <ul class="nav" >
-            <li class="nav-item"><a href="" class="nav-link link-dark px-2">Account</a></li>
+            <li class="nav-item"><a href="" class="nav-link link-dark px-2">` + sessionStorage.getItem("accUser") + `</a></li>
         </ul></div>`
     nav.innerHTML = html;
 }
@@ -112,33 +106,104 @@ function displayPlants(plantjson){
 }
 
 function handleSignInSubmit() {
+    attemptSignIn(document.getElementById("username").value, document.getElementById("password").value);
+}
 
-const accountUrl = "https://localhost:5001/api/accounts";
+function handleSignUpSubmit() {
 
-    fetch(accountUrl).then(function(response){
+    var user = document.getElementById("username").value;
+    var pass = document.getElementById("password").value;
+    var confirmPass = document.getElementById("confirmPassword").value;
+
+    if (user != "" && pass != "" && confirmPass != "" && pass == confirmPass) {
+        var account = {
+            AccountUsername : user,
+            AccountFName : "N/A",
+            AccountLName : "N/A",
+            AccountPassword : pass,
+            AccountAdminStatus : 0,
+            AccountBio : "N/A",
+            AccountProfilePic : "N/A",
+            AccountCreatedSessionId : 0
+        
+        }
+        postAccount(account);
+    }
+    else if (user == "") {alert("Username must not be empty. Please enter a username.");}
+    else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
+    else if (confirmPass == "") {alert("Please confirm your password.");}
+    else {alert("Passwords do not match. Please try again");}
+}
+
+function postAccount(account) {
+    fetch(accountAPI, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(account)
+    }).then((response)=>{
+        login(account.AccountUsername);
+    })
+}
+
+function attemptSignIn(user, pass) {
+    var logged = 0;
+
+    fetch(accountAPI).then(function(response){
         return response.json();
     }).then(function(json){
-        checkSignedIn(json, document.getElementById("username").value, document.getElementById("password").value);
-        
+        json.forEach(account => {
+            if (account.accountUsername==user) {
+                if (account.accountPassword==pass) {
+                    logged = 1;
+                    login(account.accountUsername);
+                }
+            }
+        })
+        if (logged==0) alert("Incorrect username or password. Please try again.");
     }).catch(function(error){
         console.log(error);
     })
-
 }
 
-function checkSignedIn(accountjson, user, pass) {
-    console.log(accountjson);
-    accountjson.forEach(account => {
-        console.log("Looping for account: " + account);
-        console.log(account.accountUsername + " " + account.accountPassword);
-        if (account.accountUsername==user) {
-            console.log("Correct user: " + account.accountUsername);
-            if (account.accountPassword==pass) {
-                console.log("Correct pass: " + account.accountPassword);
-                sessionStorage.setItem("loginStatus", "y");
-                alert("Successfully signed in! Welcome, " + account.accountFName + " " + account.accountLName);
-                window.location.href = "file:///C:/Users/Jackson/Desktop/School/Semester%202/CS100/groupProject/quad-landscaping2/CLIENT/pages/index.html";
+function login(user) {
+    fetch(accountAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.forEach(account => {
+            console.log(account.accountUsername + "=" + user);
+            if (account.accountUsername==user) {
+                    alert("Successfully signed in! Welcome, " + account.accountUsername);
+                    var account = {
+                        AccountId : account.accountId.toString(),
+                        AccountUsername : account.accountUsername,
+                        AccountFName : account.accountFName,
+                        AccountLName : account.accountLName,
+                        AccountAdminStatus : account.AccountAdminStatus,
+                        AccountBio : account.AccountBio,
+                        AccountProfilePic : account.AccountProfilePic,
+                        AccountCreatedSessionId : account.accountCreatedSessionId.toString()
+                    
+                    }
+                    sessionStorage.setItem("loginStatus", "y");
+                    storeAccount(account);
+                    window.location.href = indexUrl;
             }
-        }
-    });
+        });
+    }).catch(function(error){
+        console.log(error);
+    })
+}
+
+function storeAccount(account) {
+    sessionStorage.setItem("accId", account.AccountId);
+    sessionStorage.setItem("accUser", account.AccountUsername);
+    sessionStorage.setItem("accFName", account.accountFName);
+    sessionStorage.setItem("accLName", account.accountLName);
+    sessionStorage.setItem("accAdmStatus", account.AccountAdminStatus);
+    sessionStorage.setItem("accBio", account.AccountBio);
+    sessionStorage.setItem("accPFP", account.AccountProfilePic);
+    sessionStorage.setItem("accSeshID", account.AccountCreatedSessionId);
 }
