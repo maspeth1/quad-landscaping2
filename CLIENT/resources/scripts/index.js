@@ -117,7 +117,7 @@ function signedInNav(){
     nav.innerHTML = html;
 }
 
-function displayPlants(plantjson){
+function displayPlants(json){
     var plantTable = document.getElementById("plantTable");
     var html = "<div class=\"row\">";
     json.forEach(plant => {
