@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m2tWlVsTRstJrM7MQi0j0J1+TC4JJgkxWZ4r52+Yznf9eVZ6cEFu/PGM8QMElIxsIACdB5LdpD6qUrnh+hscdQ==",
+  "dgSpecHash": "SeH7adPXSdBjEfvjLOZNixgU8FR32CJNr8vRkZX16iCqwxb9nSQIXWUj/PFlFpr+6/rzuxIV9humWm7SM2fAWA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matth\\OneDrive\\Documents\\MIS 321\\Group Project\\Code\\quad-landscaping2\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\matth\\OneDrive\\Documents\\MIS 321\\Group Project\\Code\\quad-landscaping2\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\matth\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\chocolatey\\0.9.8.3\\chocolatey.0.9.8.3.nupkg.sha512",

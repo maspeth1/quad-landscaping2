@@ -139,7 +139,7 @@ function displayPlantInfo(json, clickedId){
             html += `<h2 style=\"margin-bottom: 20px;\">Species Name : ${plant.plantSpeciesName}</h2>`;
             html += `<h3>Difficuly : ${plant.plantDifficultyLevel}</h3>`;
             html += `<h3>Type : ${plant.plantType}</h3></div>`;
-            html += `<div class="col-5"><img src="${plant.plantPic}" style="width: 350px; height: 300px; object-fit: cover;"></div>`;
+            html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="width: 350px; height: 300px; object-fit: cover;"></div>`;
             html += `<h5 class="col-12" style="margin-top: 30px;">${plant.plantDescription}</h5>`;
 
             plantInfo.innerHTML = html;   

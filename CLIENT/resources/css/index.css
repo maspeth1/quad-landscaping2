@@ -4,7 +4,7 @@
     margin: 0;
     padding:0%;
     box-sizing: border-box;
-    font-family: 'Satisfy', cursive;
+    /* font-family: 'Satisfy', cursive; */
     
 }
 #nav ul li:hover a{
