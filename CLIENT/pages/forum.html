@@ -13,15 +13,21 @@
     <nav class="py-2 border border-dark  rounded" style="background-color: darkgray; margin: 25px;" id="nav">
     </nav>  
     
-    <div class="border border-dark rounded" style="background-color: darkgrey;" id="sortBar">
-        <div class="float-end search" style=" margin: 5px;" id="forumSearch">
-            <input class="form-control" type="text" placeholder="Search">
+    <div class="border border-dark rounded row justify-content-between" style="background-color: darkgrey;" id="sortBar">
+        <div id="toolbar">
+            <select class="form-control" style=" background-color: darkgray; border: darkgray; text-align: center; margin: 5px;">
+                <option value="">Most Recent</option>
+                <option value="">Oldest</option>
+            </select>
         </div>
         <div id="toolbar">
             <select class="form-control" style=" background-color: darkgray; border: darkgray; text-align: center; margin: 5px;">
                 <option value="">Most Recent</option>
                 <option value="">Oldest</option>
             </select>
+        </div>
+        <div  style=" margin: 5px;" id="forumSearch">
+            <input class="form-control" type="text" placeholder="Search">
         </div>
     </div>
     

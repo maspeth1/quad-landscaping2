@@ -15,50 +15,6 @@ const sessionAPI = "https://localhost:5001/api/sessions";
 
 function indexLoad(){
     navLoad();
-
-    // var account = {
-    //     AccountId : 4,
-    //     AccountUsername : "TEST",
-    //     AccountFName : "TEST",
-    //     AccountLName : "TEST"
-    // }
-    // putAccount(account, account.AccountId);
-
-    // var plant = {
-    //     PlantId : 8,
-    //     PlantName : "TEST",
-    //     PlantSpeciesName : "TEST"
-    // }
-    // putPlant(plant, plant.PlantId);
-
-    // var fpost = {
-    //     PostId : 1,
-    //     PostText : "TEST",
-    //     PostSubject : "TEST"
-    // }
-    // putFPost(fpost, fpost.PostId);
-
-    // var fcomment = {
-    //     FcommentId : 1,
-    //     FcommentText : "TEST",
-    //     FcommentAccountId : 100
-    // }
-    // postForumcomment(fcomment, fcomment.FcommentId);
-
-    // var pcomment = {
-    //     PCommentId : 1,
-    //     PCommentText : "TEST",
-    //     PCommentPlantId : 100
-    // }
-    // putPlantComment(pcomment, pcomment.PCommentId);
-
-    // var session = {
-    //     SessionId : 1,
-    //     SessionAccountId : 100
-    // }
-    // putSession(session, session.SessionId);
-
-    // console.log("All done!");
 }
 
 function accountLoad(){
@@ -96,7 +52,35 @@ async function plantsLoad(){
 
     if(sessionStorage.getItem("loginStatus") == "y"){
         var buttons = document.getElementById("plantAddButtons");
-        var html = ``;
+        var html = `<form>
+            <div class="row">
+                <div class="form-group col-3">
+                    <label for="plantName">Plant Name</label>
+                    <input class="form-control" id="plantName" >
+                </div>
+                <div class="form-group col-3">
+                    <label for="speciesName">Species Name</label>
+                    <input class="form-control" id="speciesName" >
+                </div>
+                <div class="form-group col-2">
+                    <label for="typeOfPlant">Type of Plant</label>
+                    <input class="form-control" id="typeOfPlant" >
+                </div>
+                <div class="form-group col-2">
+                    <label for="difficultyLevel">Difficulty Level</label>
+                    <input class="form-control" id="difficultyLevel" placeholder="1-10">
+                </div>
+                <div class="form-group col-2">
+                    <label for="pictureLink">Picture Link</label>
+                    <input class="form-control" id="pictureLink" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="5"></textarea>
+            </div>
+        </form>
+        <button type="button"  onclick="makePlant()" style="opacity: 1; margin-top: 10px;" class="btn btn-success" id="makePlant">Post</button>`;
         buttons.innerHTML = html;
     }
 }
@@ -316,6 +300,7 @@ function login(user) {
         return response.json();
     }).then(function(json){
         json.forEach(account => {
+            console.log(account.accountUsername + "=" + user);
             if (account.accountUsername==user) {
                     alert("Successfully signed in! Welcome, " + account.accountUsername);
                     var account = {
@@ -323,8 +308,8 @@ function login(user) {
                         AccountUsername : account.accountUsername,
                         AccountFName : account.accountFName,
                         AccountLName : account.accountLName,
-                        AccountAdminStatus : account.accountAdminStatus.toString(),
-                        AccountBio : account.accountBio,
+                        AccountAdminStatus : account.AccountAdminStatus,
+                        AccountBio : account.AccountBio,
                         AccountProfilePic : account.AccountProfilePic,
                         AccountCreatedSessionId : account.accountCreatedSessionId.toString()
                     
@@ -357,7 +342,6 @@ function logout() {
 }
 
 function storeAccount(account) {
-    console.log(account.AccountAdminStatus);
     sessionStorage.setItem("accId", account.AccountId);
     sessionStorage.setItem("accUser", account.AccountUsername);
     sessionStorage.setItem("accFName", account.accountFName);
@@ -366,6 +350,37 @@ function storeAccount(account) {
     sessionStorage.setItem("accBio", account.AccountBio);
     sessionStorage.setItem("accPFP", account.AccountProfilePic);
     sessionStorage.setItem("accSeshID", account.AccountCreatedSessionId);
+}
+
+function makePlant(){
+    
+    var plantName = document.getElementById("plantName").value;
+    var speciesName = document.getElementById("speciesName").value;
+    var typeOfPlant = document.getElementById("typeOfPlant").value;
+    var difficulty = document.getElementById("difficultyLevel").value;
+    var picLink = document.getElementById("pictureLink").value;
+    var description = document.getElementById("description").value;
+
+    if (plantName != "" && speciesName != "" && typeOfPlant != "" && difficulty != "" && picLink != "" && description != "") {
+        var plant = {
+            PlantName : plantName,
+            PlantSpeciesName : speciesName,
+            PlantType : typeOfPlant,
+            PlantDifficultyLevel : difficulty,
+            PlantPic : picLink,
+            PlantDescription : description
+        
+        }
+        postPlant(plant);
+    }
+    else if (plantName == "") {alert("Name must not be empty. Please enter a plant name.");}
+    else if (speciesName == "") {alert("Species name must not be empty. Please enter a species name.");}
+    else if (typeOfPlant == "") {alert("Plant type must not be empty. Please enter a plant type.");}
+    else if (difficulty == "") {alert("Difficulty must not be empty. Please enter a username.");}
+    else if (picLink == "") {alert("Picture link must not be empty. Please enter a link.");}
+    else if (description == "") {alert("Description must not be empty. Please enter a description.");}
+    
+
 }
 
 // function createSession() {
