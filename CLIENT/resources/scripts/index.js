@@ -393,3 +393,93 @@ function postSession(session) {
         })
     }
 }
+
+function putAccount(account, id) {
+    const url = accountAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(account)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
+
+function putPlant(plant, id) {
+    const url = plantAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(plant)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
+
+function putFPost(fpost, id) {
+    const url = forumPostAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(fpost)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
+
+function putFComment(fcomment, id) {
+    const url = forumComAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(fcomment)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
+
+function putPlantComment(pcomment, id) {
+    const url = plantComAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(pcomment)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
+
+function putSession(session, id) {
+    const url = sessionAPI + "/" + id;
+    
+        fetch(url, {
+            method: "PUT",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+            },
+            body: JSON.stringify(session)
+        }).then((response)=>{
+            console.log("Successfully changed!");
+        })
+}
