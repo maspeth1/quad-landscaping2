@@ -13,30 +13,40 @@
     <nav class="py-2 border border-dark  rounded" style="background-color: darkgray; margin: 25px;" id="nav">
     </nav>  
     
-    
-    <table class="bootstrap-table">
-        <div class="border border-dark rounded" style="background-color: darkgrey;" id="sortBar">
-            <div class="float-end search" style=" margin: 5px;" id="forumSearch">
-                <input class="form-control" type="text" placeholder="Search">
-            </div>
-            <div id="toolbar">
-                <select class="form-control" style=" background-color: darkgray; border: darkgray; text-align: center; margin: 5px;">
-                    <option value="">Most Recent</option>
-                    <option value="">Oldest</option>
-                </select>
-            </div>
+    <div class="border border-dark rounded" style="background-color: darkgrey;" id="sortBar">
+        <div class="float-end search" style=" margin: 5px;" id="forumSearch">
+            <input class="form-control" type="text" placeholder="Search">
         </div>
-        <thead>
+        <div id="toolbar">
+            <select class="form-control" style=" background-color: darkgray; border: darkgray; text-align: center; margin: 5px;">
+                <option value="">Most Recent</option>
+                <option value="">Oldest</option>
+            </select>
+        </div>
+    </div>
+    
+    <table>   
+        <tbody>
             <tr>
-                <th scope="col">    </th>
+                <div class="border border-dark rounded" id="forumPost">
+                    <div class="col-8" id="forumPostText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ea obcaecati adipisci commodi nostrum illo in ex officia molestias dolorem iste repudiandae eius, aliquam, possimus eum iusto, distinctio dolor saepe praesentium voluptate est? Odio, dolorem?</div>
+                </div>
             </tr>
-        </thead>
-        <!-- <div class="border border-dark rounded col-1" id="forumPost">
-
-        </div> -->
+            <tr>
+                <div class="border border-dark rounded" id="forumPost">
+                    
+                </div>
+            </tr>
+            <tr>
+                <div class="border border-dark rounded" id="forumPost">
+                    
+                </div>
+            </tr>
+        </tbody>
+    </table>
 
         
-    </table>
+    
 
 
 

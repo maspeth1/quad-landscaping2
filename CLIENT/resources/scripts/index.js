@@ -50,6 +50,11 @@ async function plantsLoad(){
         console.log(error);
     })
 
+    if(sessionStorage.getItem("loginStatus") == "y"){
+        var buttons = document.getElementById("plantAddButtons");
+        var html = ``;
+        buttons.innerHTML = html;
+    }
 }
 
 function plantPageLoad(){
@@ -69,6 +74,7 @@ function plantPageLoad(){
     if(sessionStorage.getItem("loginStatus") == "y"){
         var buttons = document.getElementById("plantEditButtons");
         var html = `<button type="button" onclick="editPlantPage()" style="opacity: 1;" class="btn btn-warning" id="editPlantPage">Edit</button>
+        <a href="${plantsUrl}" type="button" onclick="deletePlant()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</a>
         <button type="button" onclick="savePlantChanges()" style="opacity: 0;" class="btn btn-success" id="savePlantChanges">Save Changes</button>`;
         buttons.innerHTML = html;
     }
@@ -171,6 +177,12 @@ function savePlantChanges(){
     savePlantChanges.style.opacity = 0;
 }
 
+function deletePlant(){
+
+}
+
+
+
 function displayForum(forumPostsjson) {
     forumPostsjson.forEach(post => {
         //HTML goes here
@@ -179,6 +191,7 @@ function displayForum(forumPostsjson) {
         console.log(post.postText);
     })
 }
+
 
 function handleSignInSubmit() {
     attemptSignIn(document.getElementById("username").value, document.getElementById("password").value);
