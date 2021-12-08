@@ -100,10 +100,12 @@ function plantPageLoad(){
         console.log(error);
     })
 
+    console.log(sessionStorage.getItem("accAdmStatus"));
+
     if(sessionStorage.getItem("accAdmStatus") == "1"){
         var buttons = document.getElementById("plantEditButtons");
         var html = `<button type="button" onclick="editPlantPage()" style="opacity: 1;" class="btn btn-warning" id="editPlantPage">Edit</button>
-        <a href="${plantsUrl}" type="button" onclick="deletePlant()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</a>
+        <a href="${plantsUrl}" type="button" onclick="deletePlantPage()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</a>
         <button type="button" onclick="savePlantChanges()" style="opacity: 0;" class="btn btn-success" id="savePlantChanges">Save Changes</button>`;
         buttons.innerHTML = html;
     }
@@ -218,7 +220,6 @@ function savePlantChanges(){
         PlantType : document.getElementById("plantType").innerText
     }
 
-    console.log(plant.PlantSpeciesName + " " + plant.PlantId);
     putPlant(plant, plant.PlantId);
 
     document.getElementById("plantName").contentEditable = false;
@@ -229,8 +230,13 @@ function savePlantChanges(){
 
 }
 
-function deletePlant(){
+function deletePlantPage(){
+    console.log("Here");
+    var plant = {
+        PlantId : parseInt(sessionStorage.getItem("currPlantId"))
+    }
 
+    deletePlant(plant);
 }
 
 
@@ -300,7 +306,6 @@ function login(user) {
         return response.json();
     }).then(function(json){
         json.forEach(account => {
-            console.log(account.accountUsername + "=" + user);
             if (account.accountUsername==user) {
                     alert("Successfully signed in! Welcome, " + account.accountUsername);
                     var account = {
@@ -308,9 +313,9 @@ function login(user) {
                         AccountUsername : account.accountUsername,
                         AccountFName : account.accountFName,
                         AccountLName : account.accountLName,
-                        AccountAdminStatus : account.AccountAdminStatus,
-                        AccountBio : account.AccountBio,
-                        AccountProfilePic : account.AccountProfilePic,
+                        AccountAdminStatus : account.accountAdminStatus,
+                        AccountBio : account.accountBio,
+                        AccountProfilePic : account.accountProfilePic,
                         AccountCreatedSessionId : account.accountCreatedSessionId.toString()
                     
                     }
@@ -344,8 +349,8 @@ function logout() {
 function storeAccount(account) {
     sessionStorage.setItem("accId", account.AccountId);
     sessionStorage.setItem("accUser", account.AccountUsername);
-    sessionStorage.setItem("accFName", account.accountFName);
-    sessionStorage.setItem("accLName", account.accountLName);
+    sessionStorage.setItem("accFName", account.AccountFName);
+    sessionStorage.setItem("accLName", account.AccountLName);
     sessionStorage.setItem("accAdmStatus", account.AccountAdminStatus);
     sessionStorage.setItem("accBio", account.AccountBio);
     sessionStorage.setItem("accPFP", account.AccountProfilePic);
@@ -561,5 +566,22 @@ function putSession(session, id) {
             body: JSON.stringify(session)
         }).then((response)=>{
             console.log("Successfully changed!");
+        })
+}
+
+function deletePlant(plant) {
+    const url = plantAPI;
+    console.log("Made it here");
+    
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Accept": 'application/json',
+                "Content-Type": 'application/json',
+                "Access-Control-Allow-Origin": url
+            },
+            body: JSON.stringify(plant)
+        }).then((response)=>{
+            console.log("Successfully deleted!");
         })
 }
