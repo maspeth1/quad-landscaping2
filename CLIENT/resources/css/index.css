@@ -11,13 +11,12 @@
     color:white;
 }
 
+
 #nav{
 
     font-size: 20px;
     position:static; 
-    background-color: darkgray;
-    
-    
+    background-color: darkgray;  
 }
 
 /* Plants */
@@ -36,24 +35,16 @@
     padding-bottom: 10px;
 }
 
-#plantSubmit{
-    margin: 10px;
-}
-
 /* Forum */
 #sortBar{
     margin-left: 100px;
     margin-right: 100px;
+    height: 50px;
     
 }
 
 #toolbar{
     width: 150px;
-}
-
-#forumSearch{
-    min-width: 100px;
-    max-width: 250px;
 }
 
 #forumPost{
@@ -66,11 +57,6 @@
 }
 
 #forumPostText{
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-#forumPostInfo{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -95,19 +81,20 @@
     margin: 25px;
 
 }
-section
+.generalWrapper
 {
     position:relative;
     width: 100%;
     min-height: 100vh;
-    background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
+    background-image: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     padding: 100px;
+    
 }
-header
+.generalWrapper
 {
     position: absolute;
     top: 0;
@@ -118,26 +105,20 @@ header
     justify-content: space-between;
     align-items: center;
 }
-header .logo
-{
-    position: relative;
-    font-size: 2em;
-    color:azure;
-    text-transform: uppercase;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 1px;
+#nav ul li{
+   
+    display: flex;
 }
-header .menu
+.generalWrapper .menu
 {
     position: relative;
     display: flex;
 }
-header .menu li
+.generalWrapper .menu li
 {
     list-style: none;
 }
-header .menu li a 
+.generalWrapper .menu li a 
 {
     display: inline-block;
     color:mintcream;
@@ -152,6 +133,12 @@ header .menu li a:hover
 .contentido
 {
     max-width: 600px;
+    display: inline-block;
+    color:black;
+    margin-right: 40px;
+    text-decoration: none;
+    font-weight:600;
+    
 }
 .contentido .subcontenido h1
 {
@@ -170,10 +157,10 @@ header .menu li a:hover
 .contentido .subcontenido p
 {
     font-size: 1.1em;
-    color:mintcream;
     font-weight: 400;
     margin: 20px 0;
     font-weight: 500; 
+    color:azure;
 }
 .contentido .subcontenido a
 {
@@ -212,7 +199,7 @@ header .menu li a:hover
 {
     padding: 15px 40px;
 }
-section
+#nav .wrapper 
 {
     padding: 40px;
     background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg); 
