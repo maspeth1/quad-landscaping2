@@ -60,9 +60,25 @@ namespace API.Data
 
         public void Update(Session session)
         {
-           string sql = "UPDATE sessions SET SessionStartTime = @sessionStartTime, SessionAccountId = @sessionAccountId WHERE SessionId = @sessionId";
+           string sql = "UPDATE sessions SET ";
 
             var values = GetValues(session);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@sessionId" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@sessionStartTime":
+                            sql += "sessionStartTime = \"" + session.SessionStartTime + "\" ,";
+                            break;
+                        case "@sessionAccountId":
+                            sql += "sessionAccountId = \"" + session.SessionAccountId + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE sessionId = " + session.SessionId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();

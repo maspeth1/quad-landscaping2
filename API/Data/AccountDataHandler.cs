@@ -66,9 +66,43 @@ namespace API.Data
 
         public void Update(Account accounts)
         {
-           string sql = "UPDATE accounts SET AccountUsername = @accountusername, AccountFName = @accountfname, AccountLName = @accountlname, AccountPassword = @accountpassword, AccountAdminStatus = @accountadminStatus, AccountBio = @accountBio, AccountProfilePic = @accountProfilePic, AccountCreatedSessionId = @accountcreatedsessionid WHERE Accountid = @accountid";
+            string sql = "UPDATE accounts SET ";
 
             var values = GetValues(accounts);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@accountId" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@accountUsername":
+                            sql += "accountUsername = \"" + accounts.AccountUsername + "\" ,";
+                            break;
+                        case "@accountFName":
+                            sql += "accountFName = \"" + accounts.AccountFName + "\" ,";
+                            break;
+                        case "@accountLName":
+                            sql += "accountLName = \"" + accounts.AccountLName + "\" ,";
+                            break;
+                        case "@accountPassword":
+                            sql += "accountPassword = \"" + accounts.AccountPassword + "\" ,";
+                            break;
+                        case "@accountAdminStatus":
+                            sql += "accountAdminStatus = \"" + accounts.AccountAdminStatus + "\" ,";
+                            break;
+                        case "@accountBio":
+                            sql += "accountBio = \"" + accounts.AccountBio + "\" ,";
+                            break;
+                        case "@accountProfilePic":
+                            sql += "accountProfilePic = \"" + accounts.AccountProfilePic + "\" ,";
+                            break;
+                        case "@accountCreatedSessionId":
+                            sql += "accountCreatedSessionId = \"" + accounts.AccountCreatedSessionId + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE accountId = " + accounts.AccountId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();
@@ -76,7 +110,7 @@ namespace API.Data
         public Dictionary<string, object> GetValues(Account accounts)
         {
             var values = new Dictionary<string,object>(){
-                {"@@accountId", accounts.AccountId},
+                {"@accountId", accounts.AccountId},
                 {"@accountUsername", accounts.AccountUsername},
                 {"@accountFName", accounts.AccountFName},
                 {"@accountLName",accounts.AccountLName},

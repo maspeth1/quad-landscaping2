@@ -63,9 +63,34 @@ namespace API.Data
 
         public void Update(ForumComments forumComments)
         {
-           string sql = "UPDATE forumComments SET fcommentText = @fcommentText, fcommentTimeStamp = @fcommentTimeStamp, fcommentAccountId = @fcommentAccountId, fcommentLikes = @fcommentLikes, fcommentOriginalPostId = @fcommentOriginalPostId WHERE fcommentid = @fcommentid";
+           string sql = "UPDATE forumcomments SET ";
 
             var values = GetValues(forumComments);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@fcommentId" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@fcommentText":
+                            sql += "fcommentText = \"" + forumComments.FcommentText + "\" ,";
+                            break;
+                        case "@fcommentTimeStamp":
+                            sql += "fcommentTimeStamp = \"" + forumComments.FcommentTimeStamp + "\" ,";
+                            break;
+                        case "@fcommentAccountId":
+                            sql += "fcommentAccountIds = \"" + forumComments.FcommentAccountId + "\" ,";
+                            break;
+                        case "@fcommentLikes":
+                            sql += "fcommentLikes = \"" + forumComments.FcommentLikes + "\" ,";
+                            break;
+                        case "@fcommentOriginalPostId":
+                            sql += "fcommentOriginalPostId = \"" + forumComments.FcommentOriginalPostId + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE fcommentId = " + forumComments.FcommentId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();

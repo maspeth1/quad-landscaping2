@@ -63,9 +63,34 @@ namespace API.Data
 
         public void Update(PlantComments pComments)
         {
-           string sql = "UPDATE plantcomments SET  PCommentText = @PCommentText, PCommentTimeStamp = @PCommentTimeStamp, PCommentAccountId = @PCommentAccountId, PCommentLikes = @PCommentLikes, PCommmentPlantId = @PCommmentPlantId  WHERE PCommentId = @pcommentid)";
+           string sql = "UPDATE plantcomments SET ";
 
             var values = GetValues(pComments);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@pcommentId" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@pcommentText":
+                            sql += "pcommentText = \"" + pComments.PCommentText + "\" ,";
+                            break;
+                        case "@pcommentTimeStamp":
+                            sql += "pcommentTimeStamp = \"" + pComments.PCommentTimeStamp + "\" ,";
+                            break;
+                        case "@pcommentAccountId":
+                            sql += "pcommentAccountId = \"" + pComments.PCommentAccountId + "\" ,";
+                            break;
+                        case "@pcommentLikes":
+                            sql += "pcommentLikes = \"" + pComments.PCommentLikes + "\" ,";
+                            break;
+                        case "@pcommentPlantId":
+                            sql += "pcommentPlantId = \"" + pComments.PCommentPlantId + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE pcommentId = " + pComments.PCommentId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();

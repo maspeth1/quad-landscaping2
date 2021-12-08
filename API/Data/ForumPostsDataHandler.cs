@@ -64,9 +64,37 @@ namespace API.Data
 
         public void Update(ForumPost forumPosts)
         {
-           string sql = "UPDATE forumposts SET postTimeStamp = @postTimeStamp, postText = @postText, postLikes = @postLikes, postSubject = @postSubject, postAccountId = @postAccountId, postViews = @postViews WHERE postid = @postid";
+           string sql = "UPDATE forumposts SET ";
 
             var values = GetValues(forumPosts);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@postId" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@postTimeStamp":
+                            sql += "postTimeStamp = \"" + forumPosts.PostTimeStamp + "\" ,";
+                            break;
+                        case "@postText":
+                            sql += "postText = \"" + forumPosts.PostText + "\" ,";
+                            break;
+                        case "@postLikes":
+                            sql += "postLikes = \"" + forumPosts.PostLikes + "\" ,";
+                            break;
+                        case "@postSubject":
+                            sql += "postSubject = \"" + forumPosts.PostSubject + "\" ,";
+                            break;
+                        case "@postAccountId":
+                            sql += "postAccountId = \"" + forumPosts.PostAccountId + "\" ,";
+                            break;
+                        case "@postViews":
+                            sql += "postViews = \"" + forumPosts.PostViews + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE postId = " + forumPosts.PostId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();

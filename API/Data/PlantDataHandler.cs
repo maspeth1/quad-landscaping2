@@ -66,9 +66,43 @@ namespace API.Data
 
         public void Update(Plant plants)
         {
-           string sql = "UPDATE plants SET PlantName = @plantname, PlantSpeciesName = @plantspeciesname, PlantDifficultyLevel = @plantdifficultylevel, PlantPic = @plantpic, PlantDescription = @plantdescription, PlantViews = @plantviews, CreatedByAccountID = @createdbyaccountid, PlantType = @planttype WHERE PlantId = @plantid)";
+           string sql = "UPDATE plants SET ";
 
             var values = GetValues(plants);
+
+            foreach (var temp in values) {
+                if (temp.Key != "@plantid" && temp.Value != null) {
+                    switch (temp.Key) {
+                        case "@plantname":
+                            sql += "plantName = \"" + plants.PlantName + "\" ,";
+                            break;
+                        case "@plantspeciesname":
+                            sql += "plantSpeciesName = \"" + plants.PlantSpeciesName + "\" ,";
+                            break;
+                        case "@plantdifficultylevel":
+                            sql += "plantDifficultyLevel = \"" + plants.PlantDifficultyLevel + "\" ,";
+                            break;
+                        case "@plantpic":
+                            sql += "plantPic = \"" + plants.PlantPic + "\" ,";
+                            break;
+                        case "@plantdescription":
+                            sql += "plantDescription = \"" + plants.PlantDescription + "\" ,";
+                            break;
+                        case "@plantviews":
+                            sql += "plantViews = \"" + plants.PlantViews + "\" ,";
+                            break;
+                        case "@createdbyaccountid":
+                            sql += "plantCreatedByAccountId = \"" + plants.CreatedByAccountID + "\" ,";
+                            break;
+                        case "@planttype":
+                            sql += "plantType = \"" + plants.PlantType + "\" ,";
+                            break;
+                    }
+                }
+            }
+
+            sql = sql.Remove(sql.Length - 1, 1);
+            sql += " WHERE plantId = " + plants.PlantId + ";";
             db.Open();
             db.Update(sql, values);
             db.Close();
