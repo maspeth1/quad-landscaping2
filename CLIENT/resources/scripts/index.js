@@ -15,6 +15,50 @@ const sessionAPI = "https://localhost:5001/api/sessions";
 
 function indexLoad(){
     navLoad();
+
+    // var account = {
+    //     AccountId : 4,
+    //     AccountUsername : "TEST",
+    //     AccountFName : "TEST",
+    //     AccountLName : "TEST"
+    // }
+    // putAccount(account, account.AccountId);
+
+    // var plant = {
+    //     PlantId : 8,
+    //     PlantName : "TEST",
+    //     PlantSpeciesName : "TEST"
+    // }
+    // putPlant(plant, plant.PlantId);
+
+    // var fpost = {
+    //     PostId : 1,
+    //     PostText : "TEST",
+    //     PostSubject : "TEST"
+    // }
+    // putFPost(fpost, fpost.PostId);
+
+    // var fcomment = {
+    //     FcommentId : 1,
+    //     FcommentText : "TEST",
+    //     FcommentAccountId : 100
+    // }
+    // postForumcomment(fcomment, fcomment.FcommentId);
+
+    // var pcomment = {
+    //     PCommentId : 1,
+    //     PCommentText : "TEST",
+    //     PCommentPlantId : 100
+    // }
+    // putPlantComment(pcomment, pcomment.PCommentId);
+
+    // var session = {
+    //     SessionId : 1,
+    //     SessionAccountId : 100
+    // }
+    // putSession(session, session.SessionId);
+
+    // console.log("All done!");
 }
 
 function accountLoad(){
@@ -71,7 +115,9 @@ function plantPageLoad(){
         console.log(error);
     })
 
-    if(sessionStorage.getItem("loginStatus") == "y"){
+    console.log(sessionStorage.getItem("accAdmStatus"));
+
+    if(sessionStorage.getItem("accAdmStatus") == "1"){
         var buttons = document.getElementById("plantEditButtons");
         var html = `<button type="button" onclick="editPlantPage()" style="opacity: 1;" class="btn btn-warning" id="editPlantPage">Edit</button>
         <a href="${plantsUrl}" type="button" onclick="deletePlant()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</a>
@@ -248,7 +294,6 @@ function login(user) {
         return response.json();
     }).then(function(json){
         json.forEach(account => {
-            console.log(account.accountUsername + "=" + user);
             if (account.accountUsername==user) {
                     alert("Successfully signed in! Welcome, " + account.accountUsername);
                     var account = {
@@ -256,8 +301,8 @@ function login(user) {
                         AccountUsername : account.accountUsername,
                         AccountFName : account.accountFName,
                         AccountLName : account.accountLName,
-                        AccountAdminStatus : account.AccountAdminStatus,
-                        AccountBio : account.AccountBio,
+                        AccountAdminStatus : account.accountAdminStatus.toString(),
+                        AccountBio : account.accountBio,
                         AccountProfilePic : account.AccountProfilePic,
                         AccountCreatedSessionId : account.accountCreatedSessionId.toString()
                     
@@ -290,6 +335,7 @@ function logout() {
 }
 
 function storeAccount(account) {
+    console.log(account.AccountAdminStatus);
     sessionStorage.setItem("accId", account.AccountId);
     sessionStorage.setItem("accUser", account.AccountUsername);
     sessionStorage.setItem("accFName", account.accountFName);

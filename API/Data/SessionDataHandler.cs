@@ -65,7 +65,7 @@ namespace API.Data
             var values = GetValues(session);
 
             foreach (var temp in values) {
-                if (temp.Key != "@sessionId" && temp.Value != null) {
+                if (temp.Key != "@sessionId" && temp.Value != null && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@sessionStartTime":
                             sql += "sessionStartTime = \"" + session.SessionStartTime + "\" ,";
@@ -79,6 +79,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE sessionId = " + session.SessionId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();

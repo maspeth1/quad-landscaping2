@@ -71,7 +71,7 @@ namespace API.Data
             var values = GetValues(plants);
 
             foreach (var temp in values) {
-                if (temp.Key != "@plantid" && temp.Value != null) {
+                if (temp.Key != "@plantid" && temp.Value != null && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@plantname":
                             sql += "plantName = \"" + plants.PlantName + "\" ,";
@@ -103,6 +103,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE plantId = " + plants.PlantId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();

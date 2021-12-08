@@ -69,7 +69,7 @@ namespace API.Data
             var values = GetValues(forumPosts);
 
             foreach (var temp in values) {
-                if (temp.Key != "@postId" && temp.Value != null) {
+                if (temp.Key != "@postId" && temp.Value != null && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@postTimeStamp":
                             sql += "postTimeStamp = \"" + forumPosts.PostTimeStamp + "\" ,";
@@ -95,6 +95,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE postId = " + forumPosts.PostId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();

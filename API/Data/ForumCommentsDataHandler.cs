@@ -68,7 +68,7 @@ namespace API.Data
             var values = GetValues(forumComments);
 
             foreach (var temp in values) {
-                if (temp.Key != "@fcommentId" && temp.Value != null) {
+                if (temp.Key != "@fcommentId" && temp.Value != null  && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@fcommentText":
                             sql += "fcommentText = \"" + forumComments.FcommentText + "\" ,";
@@ -91,6 +91,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE fcommentId = " + forumComments.FcommentId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();

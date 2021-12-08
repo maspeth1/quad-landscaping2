@@ -71,7 +71,7 @@ namespace API.Data
             var values = GetValues(accounts);
 
             foreach (var temp in values) {
-                if (temp.Key != "@accountId" && temp.Value != null) {
+                if (temp.Key != "@accountId" && temp.Value != null  && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@accountUsername":
                             sql += "accountUsername = \"" + accounts.AccountUsername + "\" ,";
@@ -103,6 +103,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE accountId = " + accounts.AccountId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();
