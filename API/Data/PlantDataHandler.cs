@@ -16,7 +16,7 @@ namespace API.Data
         }
         public void Delete(Plant plants)
         {
-            string sql = "UPDATE plants SET deleted = 'Y' WHERE Plantid = @plantid";
+            string sql = "UPDATE plants SET deleted = 'Y' WHERE plantId = @plantid";
 
             var values = GetValues(plants);
             db.Open();
