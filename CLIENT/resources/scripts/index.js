@@ -50,7 +50,7 @@ async function plantsLoad(){
         console.log(error);
     })
 
-    if(sessionStorage.getItem("loginStatus") == "y"){
+    if(sessionStorage.getItem("accAdmStatus") == "1"){
         var buttons = document.getElementById("plantAddButtons");
         var html = `<form>
             <div class="row">
