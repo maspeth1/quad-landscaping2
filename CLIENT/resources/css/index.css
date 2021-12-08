@@ -82,4 +82,207 @@
     margin: 25px;
 
 }
+section
+{
+    position:relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 100px;
+}
+header
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo
+{
+    position: relative;
+    font-size: 2em;
+    color:azure;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+header .menu
+{
+    position: relative;
+    display: flex;
+}
+header .menu li
+{
+    list-style: none;
+}
+header .menu li a 
+{
+    display: inline-block;
+    color:mintcream;
+    margin-right: 40px;
+    text-decoration: none;
+    font-weight:600;
+}
+header .menu li a:hover
+{
+    color:chocolate;
+}
+.contentido
+{
+    max-width: 600px;
+}
+.contentido .subcontenido h1
+{
+    font-size: 40px;
+    color:goldenrod;
+    line-height: 1em;
+    margin-top: 80px;
+}
+.contentido .subcontenido h2
+{
+    font-size: 25px;
+    color: goldenrod;
+    line-height: 1em;
+    margin-top: 25px;
+}
+.contentido .subcontenido p
+{
+    font-size: 1.1em;
+    color:mintcream;
+    font-weight: 400;
+    margin: 20px 0;
+    font-weight: 500; 
+}
+.contentido .subcontenido a
+{
+    display: inline-block;
+    padding: 10px 30px;
+    background:olive;
+    color:palegoldenrod;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.social
+{
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+}
+.social li
+{
+    list-style: none;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+.social li a
+{
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    filter: invert(1);
+    transform: scale(0.5);
+}
+@media (max-width: 991px)
+{
+    header
+{
+    padding: 15px 40px;
+}
+section
+{
+    padding: 40px;
+    background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg); 
+    background-size: cover;
+    background-position: center;
+    
+}
+.contentido .subcontenido h2
+{
+    font-size: 2.5em;
+}
+.contentido .subcontenido p
+{
+    font-size: 1em;
+}
+header .menu
+{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+header .menu.active
+{
+    display: flex;
+}
+header .menu li a
+{
+    font-size: 24px;
+    margin: 10px 0;
+}
+.sideMenu
+{
+    position: relative;
+    cursor:pointer;
+    background-size: 30px;
+    background:url(https://img.icons8.com/material-outlined/24/000000/menu--v1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    z-index: 11;
+}
+.sideMenu.active
+{
+    background-size: 25px;
+    background:url(https://img.icons8.com/material-outlined/24/000000/delete-sign.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+}
+.wrapper
+{
+    text-align: center;
+}
+.wrapper h1
+{
+    font-size: 1px;
+}
+.texto
+{
+    font-size: 1.1em;
+    margin: 20px 0;
+    font-weight: 500;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+    text-align:justify;
+}
+.texto ol li a
+{
+    color:darkslategrey;
+    text-decoration: none;
+    
+}
+
+
 
