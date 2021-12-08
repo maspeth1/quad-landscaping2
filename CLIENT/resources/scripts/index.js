@@ -52,7 +52,35 @@ async function plantsLoad(){
 
     if(sessionStorage.getItem("loginStatus") == "y"){
         var buttons = document.getElementById("plantAddButtons");
-        var html = ``;
+        var html = `<form>
+            <div class="row">
+                <div class="form-group col-3">
+                    <label for="plantName">Plant Name</label>
+                    <input class="form-control" id="plantName" >
+                </div>
+                <div class="form-group col-3">
+                    <label for="speciesName">Species Name</label>
+                    <input class="form-control" id="speciesName" >
+                </div>
+                <div class="form-group col-2">
+                    <label for="typeOfPlant">Type of Plant</label>
+                    <input class="form-control" id="typeOfPlant" >
+                </div>
+                <div class="form-group col-2">
+                    <label for="difficultyLevel">Difficulty Level</label>
+                    <input class="form-control" id="difficultyLevel" placeholder="1-10">
+                </div>
+                <div class="form-group col-2">
+                    <label for="pictureLink">Picture Link</label>
+                    <input class="form-control" id="pictureLink" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" rows="5"></textarea>
+            </div>
+        </form>
+        <button type="button"  onclick="makePlant()" style="opacity: 1; margin-top: 10px;" class="btn btn-success" id="makePlant">Post</button>`;
         buttons.innerHTML = html;
     }
 }
@@ -298,6 +326,37 @@ function storeAccount(account) {
     sessionStorage.setItem("accBio", account.AccountBio);
     sessionStorage.setItem("accPFP", account.AccountProfilePic);
     sessionStorage.setItem("accSeshID", account.AccountCreatedSessionId);
+}
+
+function makePlant(){
+    
+    var plantName = document.getElementById("plantName").value;
+    var speciesName = document.getElementById("speciesName").value;
+    var typeOfPlant = document.getElementById("typeOfPlant").value;
+    var difficulty = document.getElementById("difficultyLevel").value;
+    var picLink = document.getElementById("pictureLink").value;
+    var description = document.getElementById("description").value;
+
+    if (plantName != "" && speciesName != "" && typeOfPlant != "" && difficulty != "" && picLink != "" && description != "") {
+        var plant = {
+            PlantName : plantName,
+            PlantSpeciesName : speciesName,
+            PlantType : typeOfPlant,
+            PlantDifficultyLevel : difficulty,
+            PlantPic : picLink,
+            PlantDescription : description
+        
+        }
+        postPlant(plant);
+    }
+    else if (plantName == "") {alert("Name must not be empty. Please enter a plant name.");}
+    else if (speciesName == "") {alert("Species name must not be empty. Please enter a species name.");}
+    else if (typeOfPlant == "") {alert("Plant type must not be empty. Please enter a plant type.");}
+    else if (difficulty == "") {alert("Difficulty must not be empty. Please enter a username.");}
+    else if (picLink == "") {alert("Picture link must not be empty. Please enter a link.");}
+    else if (description == "") {alert("Description must not be empty. Please enter a description.");}
+    
+
 }
 
 // function createSession() {
