@@ -103,7 +103,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE plantId = " + plants.PlantId + ";";
-            // System.Console.WriteLine(sql);
+            System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();

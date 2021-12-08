@@ -105,6 +105,7 @@ function plantPageLoad(){
     navLoad();
 
     var clickedId = location.search.substring(1);
+    sessionStorage.setItem("currPlantId", clickedId.toString());
 
     fetch(plantAPI).then(function(response){
         return response.json();
@@ -114,8 +115,6 @@ function plantPageLoad(){
     }).catch(function(error){
         console.log(error);
     })
-
-    console.log(sessionStorage.getItem("accAdmStatus"));
 
     if(sessionStorage.getItem("accAdmStatus") == "1"){
         var buttons = document.getElementById("plantEditButtons");
@@ -196,12 +195,12 @@ function displayPlantInfo(json, clickedId){
             //             <button type="button" class="btn btn-info">Info</button>
             //             </div>`;
             var html = `<div class = \"col-7\" >`;
-            html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\">${plant.plantName}</h1>`;
-            html += `<h2 style=\"margin-bottom: 20px;\">Species Name : ${plant.plantSpeciesName}</h2>`;
-            html += `<h3>Difficuly : ${plant.plantDifficultyLevel}</h3>`;
-            html += `<h3>Type : ${plant.plantType}</h3></div>`;
+            html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\" id=\"plantName\">${plant.plantName}</h1>`;
+            html += `<h2 style=\"margin-bottom: 20px;\" id=\"plantSpeciesName\">Species Name : ${plant.plantSpeciesName}</h2>`;
+            html += `<h3 id=\"plantDiffLevel\">Difficuly : ${plant.plantDifficultyLevel}</h3>`;
+            html += `<h3 id=\"plantType\">Type : ${plant.plantType}</h3></div>`;
             html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="margin-left:20px; width: 350px; height: 300px; object-fit: cover;"></div>`;
-            html += `<h5 class="col-12" style="margin-top: 30px;">${plant.plantDescription}</h5>`;
+            html += `<h5 class="col-12" style="margin-top: 30px;" id=\"plantDesc\">${plant.plantDescription}</h5>`;
 
             plantInfo.innerHTML = html;   
         }
@@ -215,12 +214,35 @@ function editPlantPage(){
     else{
         savePlantChanges.style.opacity = 0;}
 
-    
+    document.getElementById("plantName").contentEditable = true;
+    document.getElementById("plantSpeciesName").contentEditable = true;
+    document.getElementById("plantDiffLevel").contentEditable = true;
+    document.getElementById("plantType").contentEditable = true;
+    document.getElementById("plantDesc").contentEditable = true;
 }
 
 function savePlantChanges(){
     let savePlantChanges = document.getElementById("savePlantChanges");
     savePlantChanges.style.opacity = 0;
+
+    var plant = {
+        PlantId : parseInt(sessionStorage.getItem("currPlantId")),
+        PlantName : document.getElementById("plantName").innerText,
+        PlantSpeciesName : document.getElementById("plantSpeciesName").innerText,
+        PlantDifficultyLevel : parseInt(document.getElementById("plantDiffLevel").innerText),
+        PlantDescription : document.getElementById("plantDesc").innerText,
+        PlantType : document.getElementById("plantType").innerText
+    }
+
+    console.log(plant.PlantSpeciesName + " " + plant.PlantId);
+    putPlant(plant, plant.PlantId);
+
+    document.getElementById("plantName").contentEditable = false;
+    document.getElementById("plantSpeciesName").contentEditable = false;
+    document.getElementById("plantDiffLevel").contentEditable = false;
+    document.getElementById("plantType").contentEditable = false;
+    document.getElementById("plantDesc").contentEditable = false;
+
 }
 
 function deletePlant(){
@@ -411,7 +433,6 @@ function postPlantcomment(pcomment) {
 }
 
 function postPlant(plant) {
-    function postForumpost(plant) {
         fetch(plantAPI, {
             method: "POST",
             headers: {
@@ -423,10 +444,8 @@ function postPlant(plant) {
             
         })
     }
-}
 
 function postSession(session) {
-    function postForumpost(session) {
         fetch(sessionAPI, {
             method: "POST",
             headers: {
@@ -438,7 +457,7 @@ function postSession(session) {
             
         })
     }
-}
+
 
 function putAccount(account, id) {
     const url = accountAPI + "/" + id;
