@@ -68,7 +68,8 @@ namespace API.Data
             var values = GetValues(pComments);
 
             foreach (var temp in values) {
-                if (temp.Key != "@pcommentId" && temp.Value != null) {
+                // System.Console.WriteLine(temp.Key + " = " + temp.Value);
+                if (temp.Key != "@pcommentId" && temp.Value != null && temp.Value.ToString() != "0") {
                     switch (temp.Key) {
                         case "@pcommentText":
                             sql += "pcommentText = \"" + pComments.PCommentText + "\" ,";
@@ -91,6 +92,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE pcommentId = " + pComments.PCommentId + ";";
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();
@@ -100,10 +102,10 @@ namespace API.Data
             var values = new Dictionary<string,object>(){
                 {"@pcommentid", pComments.PCommentId},
                 {"@pcommentText", pComments.PCommentText},
-                {"@PcommentTimeStamp", pComments.PCommentTimeStamp},
-                {"@PcommentAccountId",pComments.PCommentAccountId},
-                {"@PcommentLikes", pComments.PCommentLikes},
-                {"@PcommentPlantId", pComments.PCommentPlantId}
+                {"@pcommentTimeStamp", pComments.PCommentTimeStamp},
+                {"@pcommentAccountId",pComments.PCommentAccountId},
+                {"@pcommentLikes", pComments.PCommentLikes},
+                {"@pcommentPlantId", pComments.PCommentPlantId}
             }; 
             return values;
         }
