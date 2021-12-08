@@ -59,6 +59,12 @@
 #forumPostText{
     margin-left: 10px;
     margin-right: 10px;
+
+}
+
+#forumSearch{
+    min-width: 100px;
+    max-width: 350px;
 }
 
 
