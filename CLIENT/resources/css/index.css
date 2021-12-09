@@ -90,76 +90,78 @@
 }
 .generalWrapper
 {
-    position:relative;
-    width: 100%;
-    min-height: 100vh;
+    
     background-image: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
     background-size: cover;
     background-position: center;
-    display: flex;
     align-items: center;
-    padding: 100px;
-    
+    width: 100%;
+    min-height: 100vh;   
 }
 .generalWrapper
 {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     padding: 30px 100px;
-    display: flex;
+
+    /**display: flex;**/
     justify-content: space-between;
     align-items: center;
 }
-#nav ul li{
-   
-    display: flex;
-}
-.generalWrapper .menu
+
+.generalWrapper #nav
 {
     position: relative;
     display: flex;
+    opacity: 0.8;   
 }
-.generalWrapper .menu li
+.generalWrapper #nav ul li a
 {
-    list-style: none;
-}
-.generalWrapper .menu li a 
-{
-    display: inline-block;
-    color:mintcream;
-    margin-right: 40px;
-    text-decoration: none;
+    color:black;
     font-weight:600;
 }
-header .menu li a:hover
+.generalWrapper #nav ul li a:hover
 {
     color:chocolate;
 }
+
+/**.generalWrapper .menu li
+{
+    list-style: none;
+}**/
+.generalWrapper #nav ul li a
+{
+    display: inline-block;
+    /**color:mintcream;
+    margin-right: 40px;**/
+    text-decoration: none;
+    font-weight:600;  
+}
+
 .contentido
 {
     max-width: 600px;
     display: inline-block;
     color:black;
     margin-right: 40px;
-    text-decoration: none;
-    font-weight:600;
-    
+    /**text-decoration: none;
+    font-weight:600;**/   
 }
 .contentido .subcontenido h1
 {
     font-size: 40px;
     color:goldenrod;
     line-height: 1em;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 .contentido .subcontenido h2
 {
     font-size: 25px;
     color: goldenrod;
     line-height: 1em;
-    margin-top: 25px;
+    margin-top: 35px;
 }
 .contentido .subcontenido p
 {
@@ -169,16 +171,7 @@ header .menu li a:hover
     font-weight: 500; 
     color:azure;
 }
-.contentido .subcontenido a
-{
-    display: inline-block;
-    padding: 10px 30px;
-    background:olive;
-    color:palegoldenrod;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
+
 .social
 {
     position: absolute;
@@ -202,17 +195,22 @@ header .menu li a:hover
 }
 @media (max-width: 991px)
 {
-    header
+    .generalWrapper
 {
     padding: 15px 40px;
 }
-#nav .wrapper 
+.generalWrapper
 {
     padding: 40px;
     background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg); 
     background-size: cover;
     background-position: center;
     
+}
+.generalWrapper #nav
+{
+    position: relative;
+    display: flex;  
 }
 .contentido .subcontenido h2
 {
@@ -222,25 +220,25 @@ header .menu li a:hover
 {
     font-size: 1em;
 }
-header .menu
+.generalWrapper #nav ul li a
 {
-    position:fixed;
+    position:relative;
     top:0;
     left:0;
     right:0;
     bottom:0;
-    background: url(https://www.best-of-scotland.com/wp-content/uploads/2020/04/kouji-tsuru-1rHCG1WGx6I-unsplash-1024x681.jpg);
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
-header .menu.active
+.generalWrapper #nav.active
 {
     display: flex;
 }
-header .menu li a
+.generalWrapper #nav li a
 {
     font-size: 24px;
     margin: 10px 0;
@@ -287,8 +285,268 @@ header .menu li a
 .texto ol li a
 {
     color:darkslategrey;
-    text-decoration: none;
-    
+    text-decoration: none;   
+}
+/* STARTING A GARDEN*/
+.float-img
+       {
+        float: left;
+        margin-right:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+       }
+       .float-img2
+       {
+        float: right;
+        margin-left:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img3
+       {
+        float: left;
+        margin-right:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img4
+       {
+        float: right;
+        margin-left:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img5
+       {
+        float: left;
+        margin-right:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img6
+       {
+        float: right;
+        margin-left:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img7
+       {
+        float: left;
+        margin-right:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img8
+       {
+        float: right;
+        margin-left:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img9
+       {
+        float: left;
+        margin-right:30px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       }
+       .float-img14
+       {
+        float: right;
+        margin-left:10px;
+        margin-bottom:5px;
+        padding:5px;
+        width: 45%;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        object-position: center;
+       }
+       @import url('https://fonts.googleapis.com/css2?family=Arapey&family=Cookie&family=Corinthia&family=Dancing+Script&family=EB+Garamond&family=Indie+Flower&family=Josefin+Slab:ital,wght@1,100&family=Lobster+Two&family=MonteCarlo&family=Nanum+Myeongjo&family=Satisfy&display=swap');
+       .article
+       {
+            color:darkslategray;
+            font-family: 'Arapey', serif; 
+            font-size:larger; 
+            margin-left: 150px; 
+            margin-right: 150px;  
+            
+       }
+       .article h1
+       {
+            text-align: center;
+            margin-top: 0;
+            background-image:url(https://media.istockphoto.com/photos/gardening-tools-and-flowers-on-soil-picture-id1134719594?b=1&k=20&m=1134719594&s=170667a&w=0&h=L0ENpIQk77B85RFb83aTqySO26sCM5-Kv6r2Li49QdY=);
+            fill-opacity: 0.5;
+            padding: 105px 95px;
+            color: azure;
+            width: 100%;
+            opacity: 0.8;
+            background-position: center;
+       }
+       .article .texto li
+       {
+            padding: 5px 25px; 
+            align-items: center;
+       }
+       .article .texto li a:hover
+       {
+        color: chocolate;
+       }
+       .insitu
+       {
+           text-align:center;
+           margin-bottom: 300px;
+           display: block;  
+           text-align: justify;
+       }
+       .insitu h2 
+       {
+            margin-top: 100px;
+       }
+       .article .texto h2 ul li 
+       {
+        text-decoration: none;    
+       }
+       .footer-dark {
+  padding:50px 0;
+  color:#f0f9ff;
+  background-color:#282d32;
+}
+
+.footer-dark h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-dark ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-dark ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.6;
+}
+
+.footer-dark ul a:hover {
+  opacity:0.8;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item:not(.social) {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+.footer-dark .item.text {
+  margin-bottom:36px;
+}
+
+@media (max-width:767px) {
+  .footer-dark .item.text {
+    margin-bottom:0;
+  }
+}
+
+.footer-dark .item.text p {
+  opacity:0.6;
+  margin-bottom:0;
+}
+
+.footer-dark .item.social {
+  text-align:center;
+}
+
+@media (max-width:991px) {
+  .footer-dark .item.social {
+    text-align:center;
+    margin-top:20px;
+  }
+}
+
+.footer-dark .item.social > a {
+  font-size:20px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+  margin:0 8px;
+  color:#fff;
+  opacity:0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity:0.9;
+}
+
+.footer-dark .copyright {
+  text-align:center;
+  padding-top:24px;
+  opacity:0.3;
+  font-size:13px;
+  margin-bottom:0;
+}
+.related ul li
+{ 
+    list-style-type: none;
+}
+.related ul li a
+{
+    text-decoration:none;
+    color:olive;
+}
+.related ul li a:hover
+{
+    color:darkslategrey;
 }
 
 
