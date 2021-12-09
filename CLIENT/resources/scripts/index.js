@@ -164,6 +164,40 @@ function signedOutNav(){
     </ul></div>`
     nav.innerHTML = html;
 
+    var footer = document.getElementById("footer-section");
+    var html1 = ` <div class="footer-dark" id="footer-section">
+    <div class="footer-dark">
+    <footer id= footerwrapper>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="startingG.html">Starting a Gardin</a></li>
+                        <li><a href="maintenance.html">Garden Maintenance</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="home.html">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Quad Landscaping & gardening</h3>
+                <p>With over 30 years of landscaping and horticultural knowledge, we are a team here to help you achieve the outdoor living space you've always wanted. </p>
+                </div>
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+            </div>
+            <p class="copyright">QLS&G © 2018</p>
+        </div>
+    </footer>
+</div>`
+    footer.innerHTML = html1;
+
 }
 
 function signedInNav(){
@@ -179,6 +213,40 @@ function signedInNav(){
             <li class="nav-item"><a href="account.html?${sessionStorage.getItem("accId")}" class="nav-link link-dark px-2">` + sessionStorage.getItem("accUser") + `</a></li>
         </ul></div>`
     nav.innerHTML = html;
+
+    var footer = document.getElementById("footer-section");
+    var html1 = ` <div class="footer-dark" id="footer-section">
+    <div class="footer-dark">
+    <footer id= footerwrapper>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="startingG.html">Starting a Gardin</a></li>
+                        <li><a href="maintenance.html">Garden Maintenance</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="home.html">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Quad Landscaping & gardening</h3>
+                <p>With over 30 years of landscaping and horticultural knowledge, we are a team here to help you achieve the outdoor living space you've always wanted. </p>
+                </div>
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+            </div>
+            <p class="copyright">QLS&G © 2018</p>
+        </div>
+    </footer>
+</div>`
+    footer.innerHTML = html1;
 }
 
 function displayPlants(json){
