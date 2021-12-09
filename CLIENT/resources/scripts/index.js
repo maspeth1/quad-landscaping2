@@ -458,7 +458,8 @@ function postPlant(plant) {
             },
             body: JSON.stringify(plant)
         }).then((response)=>{
-            
+            alert("Successfully added " + plant.PlantName);
+            window.location.href = plantsUrl;
         })
     }
 
