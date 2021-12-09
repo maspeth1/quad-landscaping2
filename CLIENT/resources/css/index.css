@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Arapey&family=Cookie&family=Corinthia&family=Dancing+Script&family=Indie+Flower&family=Josefin+Slab:ital,wght@1,100&family=Lobster+Two&family=MonteCarlo&family=Nanum+Myeongjo&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arapey&family=Cookie&family=Corinthia&family=Dancing+Script&family=Indie+Flower&family=Josefin+Slab:ital,wght@1,100&family=Lobster+Two&family=MonteCarlo&family=Nanum+Myeongjo&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arapey&family=Cookie&family=Corinthia&family=Dancing+Script&family=EB+Garamond&family=Indie+Flower&family=Josefin+Slab:ital,wght@1,100&family=Lobster+Two&family=Merriweather:wght@300&family=MonteCarlo&family=Nanum+Myeongjo&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arapey&family=Cookie&family=Corinthia&family=Dancing+Script&family=EB+Garamond&family=Indie+Flower&family=Josefin+Slab:ital,wght@1,100&family=Lobster+Two&family=MonteCarlo&family=Nanum+Myeongjo&family=Satisfy&display=swap');
 
 *{
     margin: 0;
@@ -220,6 +223,7 @@
     margin: 20px 0;
     font-weight: 500; 
     color:azure;
+    font-family: 'EB Garamond', serif;
 }
 
 .social
@@ -496,7 +500,7 @@
        {
         text-decoration: none;    
        }
-       .footer-dark {
+.footer-dark {
   padding:50px 0;
   color:#f0f9ff;
   background-color:#282d32;
