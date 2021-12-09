@@ -1,4 +1,4 @@
-const indexUrl = "index.html";
+const indexUrl = "home.html";
 const accountUrl = "account.html";
 const forumUrl = "forum.html";
 const maintenanceUrl = "maintenance.html";
@@ -306,24 +306,60 @@ function handleSignUpSubmit() {
     var pass = document.getElementById("password").value;
     var confirmPass = document.getElementById("confirmPassword").value;
 
-    if (user != "" && pass != "" && confirmPass != "" && pass == confirmPass) {
-        var account = {
-            AccountUsername : user,
-            AccountFName : "N/A",
-            AccountLName : "N/A",
-            AccountPassword : pass,
-            AccountAdminStatus : 0,
-            AccountBio : "N/A",
-            AccountProfilePic : "N/A",
-            AccountCreatedSessionId : 0
-        
-        }
+    var account;
+
+    if (sessionStorage.getItem("attemptAdmin") != "y") {
+        if (user != "" && pass != "" && confirmPass != "" && pass == confirmPass) {
+            account = {
+                AccountUsername : user,
+                AccountFName : "N/A",
+                AccountLName : "N/A",
+                AccountPassword : pass,
+                AccountAdminStatus : 0,
+                AccountBio : "N/A",
+                AccountProfilePic : "N/A",
+                AccountCreatedSessionId : 0
+            }
         postAccount(account);
+        }
+        else if (user == "") {alert("Username must not be empty. Please enter a username.");}
+        else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
+        else if (confirmPass == "") {alert("Please confirm your password.");}
+        else {alert("Passwords do not match. Please try again");}
     }
-    else if (user == "") {alert("Username must not be empty. Please enter a username.");}
-    else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
-    else if (confirmPass == "") {alert("Please confirm your password.");}
-    else {alert("Passwords do not match. Please try again");}
+    else if (sessionStorage.getItem("attemptAdmin") == "y") {
+        if (user != "" && pass != "" && confirmPass != "" && pass == confirmPass) {
+            account = {
+                AccountUsername : user,
+                AccountFName : "N/A",
+                AccountLName : "N/A",
+                AccountPassword : pass,
+                AccountAdminStatus : 1,
+                AccountBio : "N/A",
+                AccountProfilePic : "N/A",
+                AccountCreatedSessionId : 0
+            }
+        postAccount(account);
+        }
+        else if (user == "") {alert("Username must not be empty. Please enter a username.");}
+        else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
+        else if (confirmPass == "") {alert("Please confirm your password.");}
+        else {alert("Passwords do not match. Please try again");}
+    }
+}
+
+function handleSignUpAsAdmin() {
+    var signIn = document.getElementById("signInContainer");
+    // console.log(signIn.innerHTML);
+
+    var html = `        <div class="form-group row justify-content-center" id="adminPass" >
+            <div class="col-6">
+            <label for="password">adminPass</label>
+            <input type="password" class="form-control" id="username" placeholder="Username">
+        `
+    signIn.innerHTML += html;
+
+    sessionStorage.setItem("attemptAdmin", "y");
 }
 
 function attemptSignIn(user, pass) {
