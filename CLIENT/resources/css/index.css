@@ -74,7 +74,7 @@
     padding-top: 20px;
 }
 
-#signIn{
+#signIn {
     padding: 15px;
     font-size: 30px;
     text-align: center;
@@ -85,9 +85,21 @@
     padding: 15px;
     font-size: 30px;
     text-align: center;
-    margin: 25px;
+}
+
+#attemptAdmin{
+    
+    font-size: 30px;
+    text-align: center;
+}
+
+#adminPassBox{
+    padding: 15px;
+    font-size: 30px;
+    text-align: center;
 
 }
+
 .generalWrapper
 {
     
