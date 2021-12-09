@@ -166,7 +166,7 @@ function signedInNav(){
         <ul class="nav me-auto">
             <li class="nav-item"><a href="home.html" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="plants.html" class="nav-link link-dark px-2">Garden Maintenance</a></li>
-            <li class="nav-item"><a href="staringG.html" class="nav-link link-dark px-2">Starting a Garden</a></li>
+            <li class="nav-item"><a href="startingG.html" class="nav-link link-dark px-2">Starting a Garden</a></li>
             <li class="nav-item"><a href="forum.html" class="nav-link link-dark px-2">Forum</a></li>
         </ul>
         <ul class="nav" >
