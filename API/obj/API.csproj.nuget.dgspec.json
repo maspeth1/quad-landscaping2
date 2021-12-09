@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\321group\\quad-landscaping2\\api\\API.csproj": {}
+    "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\quadland\\quad-landscaping2\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\321group\\quad-landscaping2\\api\\API.csproj": {
+    "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\quadland\\quad-landscaping2\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\321group\\quad-landscaping2\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\quadland\\quad-landscaping2\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\321group\\quad-landscaping2\\api\\API.csproj",
+        "projectPath": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\quadland\\quad-landscaping2\\api\\API.csproj",
         "packagesPath": "C:\\Users\\Jackson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\321group\\quad-landscaping2\\api\\obj\\",
+        "outputPath": "C:\\Users\\Jackson\\Desktop\\School\\Semester 2\\CS100\\quadland\\quad-landscaping2\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jackson\\AppData\\Roaming\\NuGet\\NuGet.Config"

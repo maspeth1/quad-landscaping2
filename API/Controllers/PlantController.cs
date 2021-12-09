@@ -45,7 +45,8 @@ namespace API.Controllers
             System.Console.WriteLine(value.PlantViews);
             System.Console.WriteLine(value.CreatedByAccountID);
             System.Console.WriteLine(value.PlantType);
-            value.dataHandler.Insert(value);
+            IPlantDataHandler plantDataHandler = new PlantDataHandler();
+            plantDataHandler.Insert(value);
         }
 
         // PUT: api/qlg/5

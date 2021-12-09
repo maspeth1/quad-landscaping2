@@ -239,8 +239,6 @@ function deletePlantPage(){
     deletePlant(plant);
 }
 
-
-
 function displayForum(forumPostsjson) {
     forumPostsjson.forEach(post => {
         //HTML goes here
@@ -249,7 +247,6 @@ function displayForum(forumPostsjson) {
         console.log(post.postText);
     })
 }
-
 
 function handleSignInSubmit() {
     attemptSignIn(document.getElementById("username").value, document.getElementById("password").value);
@@ -371,9 +368,11 @@ function makePlant(){
             PlantName : plantName,
             PlantSpeciesName : speciesName,
             PlantType : typeOfPlant,
-            PlantDifficultyLevel : difficulty,
+            PlantDifficultyLevel : parseInt(difficulty),
             PlantPic : picLink,
-            PlantDescription : description
+            PlantDescription : description,
+            PlantViews : 1,
+            CreatedByAccountID : parseInt(sessionStorage.getItem("accId"))
         
         }
         postPlant(plant);
@@ -381,7 +380,7 @@ function makePlant(){
     else if (plantName == "") {alert("Name must not be empty. Please enter a plant name.");}
     else if (speciesName == "") {alert("Species name must not be empty. Please enter a species name.");}
     else if (typeOfPlant == "") {alert("Plant type must not be empty. Please enter a plant type.");}
-    else if (difficulty == "") {alert("Difficulty must not be empty. Please enter a username.");}
+    else if (difficulty == "") {alert("Difficulty must not be empty. Please enter a difficulty.");}
     else if (picLink == "") {alert("Picture link must not be empty. Please enter a link.");}
     else if (description == "") {alert("Description must not be empty. Please enter a description.");}
     
@@ -423,7 +422,6 @@ function postForumpost(post) {
 }
 
 function postForumcomment(fcomment) {
-    function postForumpost(fcomment) {
         fetch(forumComAPI, {
             method: "POST",
             headers: {
@@ -435,10 +433,9 @@ function postForumcomment(fcomment) {
             
         })
     }
-}
+
 
 function postPlantcomment(pcomment) {
-    function postForumpost(pcomment) {
         fetch(plantComAPI, {
             method: "POST",
             headers: {
@@ -450,7 +447,7 @@ function postPlantcomment(pcomment) {
             
         })
     }
-}
+
 
 function postPlant(plant) {
         fetch(plantAPI, {
