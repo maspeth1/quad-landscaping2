@@ -271,9 +271,9 @@ function displayPlantInfo(json, clickedId){
             //             </div>`;
             var html = `<div class = \"col-7\" >`;
             html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\" id=\"plantName\">${plant.plantName}</h1>`;
-            html += `<h2 style=\"margin-bottom: 20px;\" id=\"plantSpeciesName\">Species Name : ${plant.plantSpeciesName}</h2>`;
-            html += `<h3 id=\"plantDiffLevel\">Difficuly : ${plant.plantDifficultyLevel}</h3>`;
-            html += `<h3 id=\"plantType\">Type : ${plant.plantType}</h3></div>`;
+            html += `<h2 style="display: inline;">Species Name : </h2><h2 style="display: inline;" style=\"margin-bottom: 20px;\" id=\"plantSpeciesName\">${plant.plantSpeciesName}</h2><h6></h6>`;
+            html += `<h3 style="display: inline;">Difficuly : </h3><h3 style="display: inline;" id=\"plantDiffLevel\">${plant.plantDifficultyLevel}</h3><h6></h6>`;
+            html += `<h3 style="display: inline;">Type : </h3><h3  style="display: inline;" id=\"plantType\">${plant.plantType}</h3></div>`;
             html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="margin-left:20px; width: 350px; height: 300px; object-fit: cover;"></div>`;
             html += `<h5 class="col-12" style="margin-top: 30px;" id=\"plantDesc\">${plant.plantDescription}</h5>`;
 
