@@ -304,9 +304,12 @@ function savePlantChanges(){
         PlantId : parseInt(sessionStorage.getItem("currPlantId")),
         PlantName : document.getElementById("plantName").innerText,
         PlantSpeciesName : document.getElementById("plantSpeciesName").innerText,
-        PlantDifficultyLevel : parseInt(document.getElementById("plantDiffLevel").innerText),
+        PlantDifficultyLevel : parseInt(document.getElementById("plantDiffLevel").innerText.substr(12, document.getElementById("plantDiffLevel").innerText.length)),
         PlantDescription : document.getElementById("plantDesc").innerText,
-        PlantType : document.getElementById("plantType").innerText
+        PlantType : document.getElementById("plantType").innerText,
+        PlantPic : "0",
+        PlantViews : 0,
+        CreatedByAccountID : 0
     }
 
     putPlant(plant, plant.PlantId);
