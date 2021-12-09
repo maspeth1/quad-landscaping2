@@ -146,16 +146,16 @@ function navLoad(){
 function signedOutNav(){
     var nav = document.getElementById("nav");
     var html = `<div class="container d-flex flex-wrap" id="nav">
-        <ul class="nav me-auto">
-            <li class="nav-item"><a href="home.html" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="plants.html" class="nav-link link-dark px-2">Plants</a></li>
-            <li class="nav-item"><a href="maintenance.html" class="nav-link link-dark px-2">Garden Maintenance</a></li>
-            <li class="nav-item"><a href="forum.html" class="nav-link link-dark px-2">Forum</a></li>
-        </ul>
-        <ul class="nav" >
-            <li class="nav-item"><a href="signIn.html" class="nav-link link-dark px-2">Login</a></li>
-            <li class="nav-item"><a href="signUp.html" class="nav-link link-dark px-2">Sign up</a></li>
-        </ul></div>`
+    <ul class="nav me-auto">
+        <li class="nav-item"><a href="home.html" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="maintenance.html" class="nav-link link-dark px-2">Garden Maintenance</a></li>
+        <li class="nav-item"><a href="startingG.html" class="nav-link link-dark px-2">Starting a Garden</a></li>
+        <li class="nav-item"><a href="forum.html" class="nav-link link-dark px-2">Forum</a></li>
+    </ul>
+    <ul class="nav" >
+    <li class="nav-item"><a href="signIn.html" class="nav-link link-dark px-2">Login</a></li>
+    <li class="nav-item"><a href="signUp.html" class="nav-link link-dark px-2">Sign up</a></li>
+    </ul></div>`
     nav.innerHTML = html;
 
 }
