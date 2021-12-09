@@ -26,8 +26,8 @@ namespace API.Data
 
         public void Insert(Plant plants)
         {
-            string sql = "INSERT INTO plants (PlantName, PlantSpeciesName, PlantDifficultyLevel, PlantPic, PlantDescription, PlantViews, CreatedByAccountID)";
-            sql += "VALUES (@plantname, @plantSpeciesname, @plantDifficultyLevel, @plantpic, @plantdescription, @plantviews, @createdbyaccountiD)";
+            string sql = "INSERT INTO plants (PlantName, PlantSpeciesName, PlantDifficultyLevel, PlantPic, PlantDescription, PlantViews, PlantCreatedByAccountID, PlantType)";
+            sql += "VALUES (@plantname, @plantSpeciesname, @plantDifficultyLevel, @plantpic, @plantdescription, @plantviews, @createdbyaccountid, @plantType)";
 
             var values = GetValues(plants);
             db.Open();
@@ -103,7 +103,7 @@ namespace API.Data
 
             sql = sql.Remove(sql.Length - 1, 1);
             sql += " WHERE plantId = " + plants.PlantId + ";";
-            System.Console.WriteLine(sql);
+            // System.Console.WriteLine(sql);
             db.Open();
             db.Update(sql, values);
             db.Close();
