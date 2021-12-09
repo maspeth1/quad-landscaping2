@@ -47,6 +47,12 @@ function forumPostLoad(){
         console.log(error);
     })
     
+    if (sessionStorage.getItem("loginStatus")!="y") {
+        var commentBox = document.getElementById("commentContainer");
+        commentBox.innerHTML = "";
+    }
+
+    sessionStorage.setItem("currPost", clickedId);
 }
 
 function maintenanceLoad(){
@@ -478,6 +484,22 @@ function makePlant(){
 
 }
 
+function makeForumComment(){
+
+    if (document.getElementById("comment").value != "") {
+    var fcomment = {
+        FcommentText : document.getElementById("comment").value,
+        FcommentAccountId : parseInt(sessionStorage.getItem("accId")),
+        FcommentLikes : 0,
+        FcommentOriginalPostId : parseInt(sessionStorage.getItem("currPost"))
+        }
+    postForumcomment(fcomment);
+    }
+    else if (document.getElementById("comment").value != "") {
+        alert("Cannot make blank comment. Please enter a comment");
+    }
+}
+
 // function createSession() {
 //     var session {
 //         sessionStartTime : ,
@@ -513,6 +535,7 @@ function postForumpost(post) {
 }
 
 function postForumcomment(fcomment) {
+    console.log("Made it here");
         fetch(forumComAPI, {
             method: "POST",
             headers: {
@@ -521,7 +544,7 @@ function postForumcomment(fcomment) {
             },
             body: JSON.stringify(fcomment)
         }).then((response)=>{
-            
+            alert("Your comment has been posted!");
         })
     }
 

@@ -44,6 +44,8 @@ namespace API.Controllers
             System.Console.WriteLine(value.FcommentAccountId);
             System.Console.WriteLine(value.FcommentLikes);
             System.Console.WriteLine(value.FcommentOriginalPostId);
+            IForumCommentsDataHandler fcomDataHandler = new ForumCommentsDataHandler();
+            fcomDataHandler.Insert(value);
         }
 
         // PUT: api/ForumComments/5
