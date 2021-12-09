@@ -738,6 +738,53 @@ function deletePlant(plant) {
         })
 }
 
+function editaccountPage(){
+    let saveAccChanges = document.getElementById("saveAccountChanges");
+    if (saveAccChanges.style.opacity === '0'){
+        saveAccChanges.style.opacity = 1;}
+    else{
+        saveAccChanges.style.opacity = 0;}
+
+    document.getElementById("username").contentEditable = true;
+    document.getElementById("fname").contentEditable = true;
+    document.getElementById("lname").contentEditable = true;
+    document.getElementById("bio").contentEditable = true;
+}
+
+function saveAccountChanges(){
+    let saveAccChanges = document.getElementById("saveAccountChanges");
+    saveAccChanges.style.opacity = 0;
+
+    var account = {
+            AccountId : parseInt(sessionStorage.getItem("accId")),
+            AccountUsername : document.getElementById("username").innerText,
+            AccountFName : document.getElementById("fname").innerText,
+            AccountLName : document.getElementById("lname").innerText,
+            AccountPassword : "0",
+            AccountAdminStatus : parseInt(sessionStorage.getItem("accAdmStatus")),
+            AccountBio : document.getElementById("bio").innerText,
+            AccountProfilePic : "0",
+            AccountCreatedSessionId : 0
+    }
+
+    // console.log(account.AccountId);
+    // console.log(account.AccountUsername);
+    // console.log(account.AccountFName);
+    // console.log(account.AccountLName);
+    // console.log(account.AccountPassword);
+    // console.log(account.AccountAdminStatus);
+    // console.log(account.AccountBio);
+    // console.log(account.AccountProfilePic);
+    // console.log(account.AccountCreatedSessionId);
+
+    putAccount(account, account.AccountId);
+
+    document.getElementById("username").contentEditable = false;
+    document.getElementById("fname").contentEditable = false;
+    document.getElementById("lname").contentEditable = false;
+    document.getElementById("bio").contentEditable = false;
+
+}
 
 function accountPageLoad(json){
     console.log(sessionStorage.getItem("accId"))
@@ -750,13 +797,13 @@ function accountPageLoad(json){
                 <div class="col-3 border border-dark rounded" id="profPic" style="background-image: ${account.accountProfilePic};"></div>
                 <div class="col-8 border border-dark rounded" id="accountInfo">
                     <h1 style="display: inline;">Username : </h1>
-                    <h1 style="display: inline;">${account.accountUsername}</h1>
+                    <h1 style="display: inline;" id="username">${account.accountUsername}</h1>
                     <h1></h1>
                     <h2 style="display: inline;">Name : </h2>
-                    <h2 style="display: inline;">${account.accountFName}</h2>
-                    <h2 style="display: inline;"> ${account.accountLName}</h2>
+                    <h2 style="display: inline;" id="fname">${account.accountFName}</h2>
+                    <h2 style="display: inline;" id="lname"> ${account.accountLName}</h2>
                     <h3 >Bio : </h3>
-                    <h3>${account.accountBio}</h3>            
+                    <h3 id="bio">${account.accountBio}</h3>            
                 </div>
                 <div class="form-group row justify-content-center" id="signIn">
                     <div class="col-6">
