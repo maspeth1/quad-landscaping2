@@ -26,6 +26,7 @@ namespace API.Data
 
         public void Insert(ForumPost forumPost)
         {
+            System.Console.WriteLine("Made it here");
             string sql = "INSERT INTO forumposts (postTimeStamp, postText, postLikes, postSubject, postAccountId, postViews)";
             sql += "VALUES (@postTimeStamp, @postText, @postLikes, @postSubject, @postAccountId, @postViews)";
 

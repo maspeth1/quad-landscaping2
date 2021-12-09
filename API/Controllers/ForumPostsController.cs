@@ -45,6 +45,8 @@ namespace API.Controllers
             System.Console.WriteLine(value.PostSubject);
             System.Console.WriteLine(value.PostAccountId);
             System.Console.WriteLine(value.PostViews);
+            IForumPostsDataHandler fpostDataHandler = new ForumPostDataHandler();
+            fpostDataHandler.Insert(value);
 
         }
 

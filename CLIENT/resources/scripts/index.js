@@ -496,8 +496,26 @@ function makeForumComment(){
     postForumcomment(fcomment);
     }
     else if (document.getElementById("comment").value != "") {
-        alert("Cannot make blank comment. Please enter a comment");
+        alert("Cannot make blank comment. Please enter a comment.");
     }
+}
+
+function makeForumPost(){
+    if (document.getElementById("forumTitleBox").value != "" && document.getElementById("forumTextbox").value != "") {
+        var fpost = {
+            PostText : document.getElementById("forumTextbox").value,
+            PostSubject : document.getElementById("forumTitleBox").value,
+            PostLikes : 0,
+            PostAccountId : parseInt(sessionStorage.getItem("accId"))
+            }
+        postForumpost(fpost);
+        }
+        else if (document.getElementById("forumTitleBox").value == "") {
+            alert("Cannot make post with no title. Please enter a title.");
+        }
+        else if (document.getElementById("forumTextbox").value == "") {
+            alert("Cannot make post with no text. Please enter text for the post.");
+        }
 }
 
 // function createSession() {
@@ -522,6 +540,7 @@ function postAccount(account) {
 }
 
 function postForumpost(post) {
+    console.log("Now here");
     fetch(forumPostAPI, {
         method: "POST",
         headers: {
@@ -530,7 +549,8 @@ function postForumpost(post) {
         },
         body: JSON.stringify(post)
     }).then((response)=>{
-        
+        alert("Successfully created post!");
+        window.location.href = forumUrl;
     })
 }
 
