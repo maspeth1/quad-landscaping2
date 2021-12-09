@@ -176,7 +176,7 @@ function signedInNav(){
             <li class="nav-item"><a href="forum.html" class="nav-link link-dark px-2">Forum</a></li>
         </ul>
         <ul class="nav" >
-            <li class="nav-item"><a href="" class="nav-link link-dark px-2">` + sessionStorage.getItem("accUser") + `</a></li>
+            <li class="nav-item"><a href="account.html?${sessionStorage.getItem("accId")}" class="nav-link link-dark px-2">` + sessionStorage.getItem("accUser") + `</a></li>
         </ul></div>`
     nav.innerHTML = html;
 }
