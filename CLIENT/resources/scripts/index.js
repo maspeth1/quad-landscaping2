@@ -34,6 +34,21 @@ function forumLoad(){
     
 }
 
+function forumPostLoad(){
+    navLoad();
+    var clickedId = location.search.substring(1);
+    // sessionStorage.setItem("currPlantId", clickedId.toString());
+
+    fetch(forumPostAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        displayPlantInfo(json, clickedId);
+    }).catch(function(error){
+        console.log(error);
+    })
+    
+}
+
 function maintenanceLoad(){
     navLoad();
     
@@ -241,14 +256,45 @@ function deletePlantPage(){
 
 
 
-function displayForum(forumPostsjson) {
-    forumPostsjson.forEach(post => {
-        //HTML goes here
-        console.log(post.postId);
-        console.log(post.postTimeStamp);
-        console.log(post.postText);
-    })
+function displayForum(json){
+
+    var forum = document.getElementById("forum");
+    var html = ``;
+    json.forEach(post => {
+        html += `<div class="border border-dark rounded" id="forumPost">
+                        <div class="row">
+                            <div class="col-3" id="forumPostText">
+                                <div>${post.postAccountId}</div>
+                                <div>${post.postTimeStamp}</div>
+                                <a href="forumPost.html?${post.postId}">Look At Post Here</a>
+                            </div>
+                            <div class="col-8" id="forumPostText"><b>${post.postSubject}</b>&nbsp;&nbsp;&nbsp;${post.postText}</div>
+                        </div>
+                    </div>`
+    });
+    
+    forum.innerHTML = html;
 }
+
+// function displayForumPost(json, clickedId){
+//     json.forEach(plant => {
+//         if(plant.plantId == clickedId){ 
+//             var plantInfo = document.getElementById("plantInfo");
+//             // var html = `<div class="col-12" style="margin-left: 100px;">
+//             //             <button type="button" class="btn btn-info">Info</button>
+//             //             </div>`;
+//             var html = `<div class = \"col-7\" >`;
+//             html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\" id=\"plantName\">${plant.plantName}</h1>`;
+//             html += `<h2 style=\"margin-bottom: 20px;\" id=\"plantSpeciesName\">Species Name : ${plant.plantSpeciesName}</h2>`;
+//             html += `<h3 id=\"plantDiffLevel\">Difficuly : ${plant.plantDifficultyLevel}</h3>`;
+//             html += `<h3 id=\"plantType\">Type : ${plant.plantType}</h3></div>`;
+//             html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="margin-left:20px; width: 350px; height: 300px; object-fit: cover;"></div>`;
+//             html += `<h5 class="col-12" style="margin-top: 30px;" id=\"plantDesc\">${plant.plantDescription}</h5>`;
+
+//             plantInfo.innerHTML = html;   
+//         }
+//     })
+// }
 
 
 function handleSignInSubmit() {
