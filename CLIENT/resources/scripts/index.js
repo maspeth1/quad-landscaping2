@@ -305,6 +305,7 @@ function handleSignUpSubmit() {
     var user = document.getElementById("username").value;
     var pass = document.getElementById("password").value;
     var confirmPass = document.getElementById("confirmPassword").value;
+    var adminPass = document.getElementById("adminPass").value;
 
     var account;
 
@@ -327,7 +328,7 @@ function handleSignUpSubmit() {
         else if (confirmPass == "") {alert("Please confirm your password.");}
         else {alert("Passwords do not match. Please try again");}
     }
-    else if (sessionStorage.getItem("attemptAdmin") == "y") {
+    else if (sessionStorage.getItem("attemptAdmin") == "y" && adminPass == "annetheamazing") {
         if (user != "" && pass != "" && confirmPass != "" && pass == confirmPass) {
             account = {
                 AccountUsername : user,
@@ -344,20 +345,26 @@ function handleSignUpSubmit() {
         else if (user == "") {alert("Username must not be empty. Please enter a username.");}
         else if (pass == "") {alert("Password must not be empty. Please enter a password.");}
         else if (confirmPass == "") {alert("Please confirm your password.");}
-        else {alert("Passwords do not match. Please try again");}
+        else {alert("Passwords do not match. Please try again.");}
+    }
+    else if (adminPass != "annetheamazing") {
+        alert("Incorrect admin password. Please try again.")
     }
 }
 
 function handleSignUpAsAdmin() {
-    var signIn = document.getElementById("signInContainer");
+    var adminPassBox = document.getElementById("adminPassBox");
     // console.log(signIn.innerHTML);
 
-    var html = `        <div class="form-group row justify-content-center" id="adminPass" >
+    var html = `        
             <div class="col-6">
-            <label for="password">adminPass</label>
-            <input type="password" class="form-control" id="username" placeholder="Username">
+            <label for="password">Admin Password</label>
+            <input type="password" class="form-control" id="adminPass" placeholder="Admin Password">
         `
-    signIn.innerHTML += html;
+    adminPassBox.innerHTML += html;
+
+    var adminButton = document.getElementById("attemptAdmin");
+    adminButton.innerHTML = "";
 
     sessionStorage.setItem("attemptAdmin", "y");
 }
