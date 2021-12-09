@@ -19,6 +19,14 @@ function indexLoad(){
 
 function accountLoad(){
     navLoad();
+
+    fetch(accountAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        accountPageLoad(json);
+    }).catch(function(error){
+        console.log(error);
+    })
 }
 
 function forumLoad(){
@@ -786,3 +794,52 @@ function deletePlant(plant) {
             window.location.href = plantsUrl;
         })
 }
+
+
+function accountPageLoad(json){
+    console.log(sessionStorage.getItem("accId"))
+    
+        json.forEach(account => {
+            if(account.accountId == sessionStorage.getItem("accId")){ 
+                var accountInfo = document.getElementById("accountPage");
+    
+                var html = `<div class="row">
+                <div class="col-3 border border-dark rounded" id="profPic" style="background-image: ${account.accountProfilePic};"></div>
+                <div class="col-8 border border-dark rounded" id="accountInfo">
+                    <h1 style="display: inline;">Username : </h1>
+                    <h1 style="display: inline;">${account.accountUsername}</h1>
+                    <h1></h1>
+                    <h2 style="display: inline;">Name : </h2>
+                    <h2 style="display: inline;">${account.accountFName}</h2>
+                    <h2 style="display: inline;"> ${account.accountLName}</h2>
+                    <h3 >Bio : </h3>
+                    <h3>${account.accountBio}</h3>            
+                </div>
+                <div class="form-group row justify-content-center" id="signIn">
+                    <div class="col-6">
+                    <label for="password">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center" id="signIn">
+                    <div class="col-6">
+                    <label for="password">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center" id="signIn">
+                    <div class="col-6">
+                    <label for="password">Confirm New Password</label>
+                    <input type="password" class="form-control" id="confirmNewPassword" placeholder="Password">
+                    </div>
+                </div>
+                <div id="signUp" >
+                    <button type="submit" class="btn btn-success" onclick="handleNewPasswordSubmit()">Submit</button>
+                </div>
+                </div>
+                `
+    
+                accountInfo.innerHTML = html;   
+            }
+        })
+    }
