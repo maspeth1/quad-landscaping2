@@ -126,7 +126,7 @@ function plantPageLoad(){
     if(sessionStorage.getItem("accAdmStatus") == "1"){
         var buttons = document.getElementById("plantEditButtons");
         var html = `<button type="button" onclick="editPlantPage()" style="opacity: 1;" class="btn btn-warning" id="editPlantPage">Edit</button>
-        <a href="${plantsUrl}" type="button" onclick="deletePlantPage()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</a>
+        <button type="button" onclick="deletePlantPage()" style="opacity: 1;" class="btn btn-danger" id="deletePlant">Delete</button>
         <button type="button" onclick="savePlantChanges()" style="opacity: 0;" class="btn btn-success" id="savePlantChanges">Save Changes</button>`;
         buttons.innerHTML = html;
     }
@@ -259,8 +259,6 @@ function deletePlantPage(){
 
     deletePlant(plant);
 }
-
-
 
 function displayForum(json){
 
@@ -702,18 +700,18 @@ function putSession(session, id) {
 }
 
 function deletePlant(plant) {
-    const url = plantAPI;
+    const url = plantAPI + "/" + sessionStorage.getItem("currPlantId");
     console.log("Made it here");
     
         fetch(url, {
             method: "DELETE",
             headers: {
                 "Accept": 'application/json',
-                "Content-Type": 'application/json',
-                "Access-Control-Allow-Origin": url
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify(plant)
         }).then((response)=>{
-            console.log("Successfully deleted!");
+            alert("Successfully deleted!");
+            window.location.href = plantsUrl;
         })
 }
