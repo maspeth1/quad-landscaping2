@@ -47,10 +47,18 @@ function forumPostLoad(){
     var clickedId = location.search.substring(1);
     // sessionStorage.setItem("currPlantId", clickedId.toString());
 
-    fetch(forumPostAPI).then(function(response){
+    fetch(accountAPI).then(function(response){
         return response.json();
     }).then(function(json){
-        displayPlantInfo(json, clickedId);
+        accountPageLoad(json);
+    }).catch(function(error){
+        console.log(error);
+    })
+
+    fetch(forumComAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        displayForumPost(json, clickedId);
     }).catch(function(error){
         console.log(error);
     })
@@ -290,27 +298,29 @@ function displayForum(json){
     });
     
     forum.innerHTML = html;
+
+
 }
 
-// function displayForumPost(json, clickedId){
-//     json.forEach(plant => {
-//         if(plant.plantId == clickedId){ 
-//             var plantInfo = document.getElementById("plantInfo");
-//             // var html = `<div class="col-12" style="margin-left: 100px;">
-//             //             <button type="button" class="btn btn-info">Info</button>
-//             //             </div>`;
-//             var html = `<div class = \"col-7\" >`;
-//             html += `<h1 style=\"font-size: 70px; margin-bottom: 15px;\" id=\"plantName\">${plant.plantName}</h1>`;
-//             html += `<h2 style=\"margin-bottom: 20px;\" id=\"plantSpeciesName\">Species Name : ${plant.plantSpeciesName}</h2>`;
-//             html += `<h3 id=\"plantDiffLevel\">Difficuly : ${plant.plantDifficultyLevel}</h3>`;
-//             html += `<h3 id=\"plantType\">Type : ${plant.plantType}</h3></div>`;
-//             html += `<div class="col-5"><img src="${plant.plantPic}" class=\"rounded\" style="margin-left:20px; width: 350px; height: 300px; object-fit: cover;"></div>`;
-//             html += `<h5 class="col-12" style="margin-top: 30px;" id=\"plantDesc\">${plant.plantDescription}</h5>`;
+function displayForumPost(json, clickedId){
+    json.forEach(post => {
+        if(post.fcommentOriginalPostId == clickedId){ 
+            var commentInfo = document.getElementById("forumComment");
+            var html = `<div class="border border-dark rounded" id="forumPost">
+            <div class="row">
+                <div class="col-3" id="forumPostText">
+                    <div>${post.fcommentAccountId}</div>
+                    <div>${post.fcommentTimeStamp}</div>
+                </div>
+                <div class="col-8" id="forumPostText">${post.fcommentText}<div>
+            </div>
+            </div>`;
 
-//             plantInfo.innerHTML = html;   
-//         }
-//     })
-// }
+            commentInfo.innerHTML = html;   
+        }
+    })
+    
+}
 
 function handleSignInSubmit() {
     attemptSignIn(document.getElementById("username").value, document.getElementById("password").value);
