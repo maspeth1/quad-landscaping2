@@ -18,11 +18,11 @@ namespace API.Data
 
         public Database()
         {
-            string server = "jtb9ia3h1pgevwb1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-            string name = "jksj663j90fz6wxd";
+            string server = "sql5.freemysqlhosting.net";
+            string name = "sql5457759";
             string port = "3306";
-            string username = "oj3v6r93n5f7jrbx";
-            string password = "gziodv18ukti18rh";
+            string username = "sql5457759";
+            string password = "e4jGy6hXhH";
             
             Console.WriteLine("got the datbase " + server);
 
