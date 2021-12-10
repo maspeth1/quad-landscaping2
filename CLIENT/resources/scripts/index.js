@@ -288,7 +288,7 @@ function displayForum(json){
         html += `<div class="border border-dark rounded" id="forumPost">
                         <div class="row">
                             <div class="col-3" id="forumPostText">
-                                <div>${post.postAccountId}</div>
+                                <div>Account Id : ${post.postAccountId}</div>
                                 <div>${post.postTimeStamp}</div>
                                 <a href="forumPost.html?${post.postId}">Look At Post Here</a>
                             </div>
@@ -309,7 +309,7 @@ function displayForumPost(json, clickedId){
             var html = `<div class="border border-dark rounded" id="forumPost">
             <div class="row">
                 <div class="col-3" id="forumPostText">
-                    <div>${post.fcommentAccountId}</div>
+                    <div>Account Id : ${post.fcommentAccountId}</div>
                     <div>${post.fcommentTimeStamp}</div>
                 </div>
                 <div class="col-8" id="forumPostText">${post.fcommentText}<div>
