@@ -316,7 +316,7 @@ function displayForumPost(json, clickedId){
             </div>
             </div>`;
 
-            commentInfo.innerHTML = html;   
+            commentInfo.innerHTML += html;   
         }
     })
     
@@ -454,6 +454,7 @@ function logout() {
         sessionStorage.removeItem("accBio");
         sessionStorage.removeItem("accPFP");
         sessionStorage.removeItem("accSeshID");
+        window.location.href = indexUrl;
     }
     else {
         console.log("No account logged in!");
@@ -469,6 +470,37 @@ function storeAccount(account) {
     sessionStorage.setItem("accBio", account.AccountBio);
     sessionStorage.setItem("accPFP", account.AccountProfilePic);
     sessionStorage.setItem("accSeshID", account.AccountCreatedSessionId);
+}
+
+function handleNewPasswordSubmit() {
+    var currentPass = document.getElementById("currentPassword").value;
+    var newPass = document.getElementById("newPassword").value;
+    var confirmPass = document.getElementById("confirmNewPassword").value;
+
+    if (newPass==confirmPass) {
+    fetch(accountAPI).then(function(response){
+        return response.json();
+    }).then(function(json){
+        json.forEach(account => {
+            if (account.accountId==sessionStorage.getItem("accId")) {
+                if (account.accountPassword==currentPass) {
+                    var acc = {
+                        AccountId : account.accountId,
+                        AccountPassword : newPass
+                    }
+                    putAccount(acc, account.accountId);
+                    alert("Password successfully changed!");
+                }
+                else {
+                    alert("Password is incorrect. Please try again.")
+                }
+            }
+        });
+    }).catch(function(error){
+        console.log(error);
+    })
+    }
+    else alert("Passwords do not match. Please try again.");
 }
 
 function makePlant(){
@@ -560,7 +592,6 @@ function postAccount(account) {
 }
 
 function postForumpost(post) {
-    console.log("Now here");
     fetch(forumPostAPI, {
         method: "POST",
         headers: {
@@ -575,7 +606,6 @@ function postForumpost(post) {
 }
 
 function postForumcomment(fcomment) {
-    console.log("Made it here");
         fetch(forumComAPI, {
             method: "POST",
             headers: {
@@ -585,6 +615,7 @@ function postForumcomment(fcomment) {
             body: JSON.stringify(fcomment)
         }).then((response)=>{
             alert("Your comment has been posted!");
+            window.location.href = forumUrl;
         })
     }
 
