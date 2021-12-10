@@ -745,6 +745,7 @@ function editaccountPage(){
     else{
         saveAccChanges.style.opacity = 0;}
 
+    document.getElementById("profPic").contentEditable = true;
     document.getElementById("username").contentEditable = true;
     document.getElementById("fname").contentEditable = true;
     document.getElementById("lname").contentEditable = true;
@@ -763,7 +764,7 @@ function saveAccountChanges(){
             AccountPassword : "0",
             AccountAdminStatus : parseInt(sessionStorage.getItem("accAdmStatus")),
             AccountBio : document.getElementById("bio").innerText,
-            AccountProfilePic : "0",
+            AccountProfilePic : document.getElementById("profPic").innerText,
             AccountCreatedSessionId : 0
     }
 
@@ -779,6 +780,7 @@ function saveAccountChanges(){
 
     putAccount(account, account.AccountId);
 
+    document.getElementById("profPic").contentEditable = false;
     document.getElementById("username").contentEditable = false;
     document.getElementById("fname").contentEditable = false;
     document.getElementById("lname").contentEditable = false;
