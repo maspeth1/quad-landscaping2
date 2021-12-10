@@ -796,7 +796,7 @@ function accountPageLoad(json){
                 var accountInfo = document.getElementById("accountPage");
     
                 var html = `<div class="row">
-                <div class="col-3 border border-dark rounded" id="profPic" style="background-image: ${account.accountProfilePic};"></div>
+                <div class="col-3 " id="profPic"><img class="border border-dark rounded" id="profPicImg"src="${account.accountProfilePic}"></div>
                 <div class="col-8 border border-dark rounded" id="accountInfo">
                     <h1 style="display: inline;">Username : </h1>
                     <h1 style="display: inline;" id="username">${account.accountUsername}</h1>

@@ -136,6 +136,11 @@
     width: 250px;
 }
 
+#profPicImg{
+    height: 100%;
+    width: 100%;
+}
+
 #accountInfo{
     background-color: white;
     margin-left: 7px;
