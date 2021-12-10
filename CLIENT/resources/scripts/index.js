@@ -6,12 +6,12 @@ const plantsUrl = "plants.html";
 const signinUrl = "signIn.html";
 const signUpUrl = "signUp.html";
 
-const accountAPI = "https://localhost:5001/api/accounts";
-const forumComAPI = "https://localhost:5001/api/forumcomments";
-const forumPostAPI = "https://localhost:5001/api/forumposts";
-const plantComAPI = "https://localhost:5001/api/plantcomments";
-const plantAPI = "https://localhost:5001/api/plant";
-const sessionAPI = "https://localhost:5001/api/sessions";
+const accountAPI = "https://quad-landscaping-api.herokuapp.com/api/accounts";
+const forumComAPI = "https://quad-landscaping-api.herokuapp.com/api/forumcomments";
+const forumPostAPI = "https://quad-landscaping-api.herokuapp.com/api/forumposts";
+// const plantComAPI = "https://localhost:5001/api/plantcomments";
+const plantAPI = "https://quad-landscaping-api.herokuapp.com/api/plant";
+// const sessionAPI = "https://localhost:5001/api/sessions";
 
 function indexLoad(){
     navLoad();
@@ -620,18 +620,18 @@ function postForumcomment(fcomment) {
     }
 
 
-function postPlantcomment(pcomment) {
-        fetch(plantComAPI, {
-            method: "POST",
-            headers: {
-                "Accept": 'application/json',
-                "Content-Type": 'application/json',
-            },
-            body: JSON.stringify(pcomment)
-        }).then((response)=>{
+// function postPlantcomment(pcomment) {
+//         fetch(plantComAPI, {
+//             method: "POST",
+//             headers: {
+//                 "Accept": 'application/json',
+//                 "Content-Type": 'application/json',
+//             },
+//             body: JSON.stringify(pcomment)
+//         }).then((response)=>{
             
-        })
-    }
+//         })
+//     }
 
 
 function postPlant(plant) {
@@ -648,18 +648,18 @@ function postPlant(plant) {
         })
     }
 
-function postSession(session) {
-        fetch(sessionAPI, {
-            method: "POST",
-            headers: {
-                "Accept": 'application/json',
-                "Content-Type": 'application/json',
-            },
-            body: JSON.stringify(session)
-        }).then((response)=>{
+// function postSession(session) {
+//         fetch(sessionAPI, {
+//             method: "POST",
+//             headers: {
+//                 "Accept": 'application/json',
+//                 "Content-Type": 'application/json',
+//             },
+//             body: JSON.stringify(session)
+//         }).then((response)=>{
             
-        })
-    }
+//         })
+//     }
 
 
 function putAccount(account, id) {
@@ -722,35 +722,35 @@ function putFComment(fcomment, id) {
         })
 }
 
-function putPlantComment(pcomment, id) {
-    const url = plantComAPI + "/" + id;
+// function putPlantComment(pcomment, id) {
+//     const url = plantComAPI + "/" + id;
     
-        fetch(url, {
-            method: "PUT",
-            headers: {
-                "Accept": 'application/json',
-                "Content-Type": 'application/json',
-            },
-            body: JSON.stringify(pcomment)
-        }).then((response)=>{
-            console.log("Successfully changed!");
-        })
-}
+//         fetch(url, {
+//             method: "PUT",
+//             headers: {
+//                 "Accept": 'application/json',
+//                 "Content-Type": 'application/json',
+//             },
+//             body: JSON.stringify(pcomment)
+//         }).then((response)=>{
+//             console.log("Successfully changed!");
+//         })
+// }
 
-function putSession(session, id) {
-    const url = sessionAPI + "/" + id;
+// function putSession(session, id) {
+//     const url = sessionAPI + "/" + id;
     
-        fetch(url, {
-            method: "PUT",
-            headers: {
-                "Accept": 'application/json',
-                "Content-Type": 'application/json',
-            },
-            body: JSON.stringify(session)
-        }).then((response)=>{
-            console.log("Successfully changed!");
-        })
-}
+//         fetch(url, {
+//             method: "PUT",
+//             headers: {
+//                 "Accept": 'application/json',
+//                 "Content-Type": 'application/json',
+//             },
+//             body: JSON.stringify(session)
+//         }).then((response)=>{
+//             console.log("Successfully changed!");
+//         })
+// }
 
 function deletePlant(plant) {
     const url = plantAPI + "/" + sessionStorage.getItem("currPlantId");
